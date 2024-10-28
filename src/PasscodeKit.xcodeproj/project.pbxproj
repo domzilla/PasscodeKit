@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2E1BE122CBA48B6007D9E62 /* PasscodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2E1BE1B2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */; };
+		F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */; };
+		F2E1BE1F2CC69758007D9E62 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */; };
+		F2E1BE212CC699AB007D9E62 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */; };
+		F2E1BE232CC699C4007D9E62 /* CreatePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */; };
+		F2E1BE252CC699D6007D9E62 /* ChangePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */; };
+		F2E1BE272CC699E5007D9E62 /* RemovePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */; };
+		F2E1BE342CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE332CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift */; };
+		F2E1BE3D2CC77199007D9E62 /* KeychainKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */; };
+		F2E1BE3E2CC77199007D9E62 /* KeychainKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2E1BE7D2CC779CD007D9E62 /* Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */; };
+		F2E1BE812CC77BF4007D9E62 /* AppPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2E1BE3A2CC77185007D9E62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F24B08B82C9C2CD300345376;
+			remoteInfo = KeychainKit;
+		};
+		F2E1BE402CC771A0007D9E62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F24B08B72C9C2CD300345376;
+			remoteInfo = KeychainKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F2E1BE3F2CC77199007D9E62 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F2E1BE3E2CC77199007D9E62 /* KeychainKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F2E1BE0E2CBA48B6007D9E62 /* PasscodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasscodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasscodeKit.h; sourceTree = "<group>"; };
+		F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTextField.swift; sourceTree = "<group>"; };
+		F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
+		F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
+		F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasscodeViewController.swift; sourceTree = "<group>"; };
+		F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeViewController.swift; sourceTree = "<group>"; };
+		F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovePasscodeViewController.swift; sourceTree = "<group>"; };
+		F2E1BE332CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeKitRessourceBundle.swift; sourceTree = "<group>"; };
+		F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeychainKit.xcodeproj; path = ../../KeychainKit/src/KeychainKit.xcodeproj; sourceTree = "<group>"; };
+		F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passcode.swift; sourceTree = "<group>"; };
+		F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPasscode.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2E1BE0B2CBA48B6007D9E62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E1BE3D2CC77199007D9E62 /* KeychainKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2E1BE042CBA48B6007D9E62 = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE352CC77167007D9E62 /* Extern */,
+				F2E1BE102CBA48B6007D9E62 /* PasscodeKit */,
+				F2E1BE0F2CBA48B6007D9E62 /* Products */,
+				F2E1BE3C2CC77199007D9E62 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F2E1BE0F2CBA48B6007D9E62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE0E2CBA48B6007D9E62 /* PasscodeKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2E1BE102CBA48B6007D9E62 /* PasscodeKit */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */,
+				F2E1BE332CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift */,
+				F2E1BE182CBA4A80007D9E62 /* Classes */,
+				F2E1BE192CBA4A8A007D9E62 /* Ressources */,
+			);
+			path = PasscodeKit;
+			sourceTree = "<group>";
+		};
+		F2E1BE182CBA4A80007D9E62 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */,
+				F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */,
+				F2E1BE282CC699F3007D9E62 /* ViewController */,
+				F2E1BE292CC699FF007D9E62 /* Controlls */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F2E1BE192CBA4A8A007D9E62 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */,
+			);
+			name = Ressources;
+			sourceTree = "<group>";
+		};
+		F2E1BE282CC699F3007D9E62 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */,
+				F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */,
+				F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */,
+				F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */,
+				F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		F2E1BE292CC699FF007D9E62 /* Controlls */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */,
+			);
+			name = Controlls;
+			sourceTree = "<group>";
+		};
+		F2E1BE352CC77167007D9E62 /* Extern */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */,
+			);
+			name = Extern;
+			sourceTree = "<group>";
+		};
+		F2E1BE372CC77185007D9E62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2E1BE3C2CC77199007D9E62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F2E1BE092CBA48B6007D9E62 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E1BE122CBA48B6007D9E62 /* PasscodeKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F2E1BE0D2CBA48B6007D9E62 /* PasscodeKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2E1BE152CBA48B6007D9E62 /* Build configuration list for PBXNativeTarget "PasscodeKit" */;
+			buildPhases = (
+				F2E1BE092CBA48B6007D9E62 /* Headers */,
+				F2E1BE0A2CBA48B6007D9E62 /* Sources */,
+				F2E1BE0B2CBA48B6007D9E62 /* Frameworks */,
+				F2E1BE0C2CBA48B6007D9E62 /* Resources */,
+				F2E1BE3F2CC77199007D9E62 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2E1BE412CC771A0007D9E62 /* PBXTargetDependency */,
+			);
+			name = PasscodeKit;
+			productName = PasscodeKit;
+			productReference = F2E1BE0E2CBA48B6007D9E62 /* PasscodeKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2E1BE052CBA48B6007D9E62 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					F2E1BE0D2CBA48B6007D9E62 = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+					};
+				};
+			};
+			buildConfigurationList = F2E1BE082CBA48B6007D9E62 /* Build configuration list for PBXProject "PasscodeKit" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2E1BE042CBA48B6007D9E62;
+			productRefGroup = F2E1BE0F2CBA48B6007D9E62 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F2E1BE372CC77185007D9E62 /* Products */;
+					ProjectRef = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F2E1BE0D2CBA48B6007D9E62 /* PasscodeKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeychainKit.framework;
+			remoteRef = F2E1BE3A2CC77185007D9E62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2E1BE0C2CBA48B6007D9E62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E1BE1B2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2E1BE0A2CBA48B6007D9E62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2E1BE1F2CC69758007D9E62 /* PasscodeViewController.swift in Sources */,
+				F2E1BE212CC699AB007D9E62 /* AuthenticateViewController.swift in Sources */,
+				F2E1BE232CC699C4007D9E62 /* CreatePasscodeViewController.swift in Sources */,
+				F2E1BE7D2CC779CD007D9E62 /* Passcode.swift in Sources */,
+				F2E1BE342CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift in Sources */,
+				F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */,
+				F2E1BE272CC699E5007D9E62 /* RemovePasscodeViewController.swift in Sources */,
+				F2E1BE252CC699D6007D9E62 /* ChangePasscodeViewController.swift in Sources */,
+				F2E1BE812CC77BF4007D9E62 /* AppPasscode.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2E1BE412CC771A0007D9E62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainKit;
+			targetProxy = F2E1BE402CC771A0007D9E62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F2E1BE132CBA48B6007D9E62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F2E1BE142CBA48B6007D9E62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F2E1BE162CBA48B6007D9E62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 568T6RKXH7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = net.domzilla.PasscodeKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2E1BE172CBA48B6007D9E62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 568T6RKXH7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = net.domzilla.PasscodeKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2E1BE082CBA48B6007D9E62 /* Build configuration list for PBXProject "PasscodeKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2E1BE132CBA48B6007D9E62 /* Debug */,
+				F2E1BE142CBA48B6007D9E62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2E1BE152CBA48B6007D9E62 /* Build configuration list for PBXNativeTarget "PasscodeKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2E1BE162CBA48B6007D9E62 /* Debug */,
+				F2E1BE172CBA48B6007D9E62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2E1BE052CBA48B6007D9E62 /* Project object */;
+}
