@@ -85,6 +85,7 @@ internal class AuthenticateViewController: PasscodeViewController {
     }
 }
 
+
 private extension AuthenticateViewController {
     
     // MARK: - Passcode Notifications

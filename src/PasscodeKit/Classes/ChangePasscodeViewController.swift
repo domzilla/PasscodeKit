@@ -16,7 +16,6 @@ private enum ChangePasscodeViewControllerState {
 internal class ChangePasscodeViewController: PasscodeViewController {
     
     private var state: ChangePasscodeViewControllerState = .enterOldPasscode
-    
     private var code: String?
     private var mismatch = false
     
@@ -94,14 +93,9 @@ internal class ChangePasscodeViewController: PasscodeViewController {
     }
 }
 
+
 private extension ChangePasscodeViewController {
     
-    // MARK: - Actions
-    @objc func cancelButtonAction(_ sender: Any?) {
-        self.dismiss(animated: true)
-    }
-    
-    // MARK: - Methods
     func updateUI() {
         
         if self.state == .enterOldPasscode {
@@ -133,5 +127,10 @@ private extension ChangePasscodeViewController {
         UIView.animate(withDuration: 0.15) {
             self.passcodeTextField.frame.origin.x = x
         }
+    }
+    
+    // MARK: - Actions
+    @objc func cancelButtonAction(_ sender: Any?) {
+        self.dismiss(animated: true)
     }
 }

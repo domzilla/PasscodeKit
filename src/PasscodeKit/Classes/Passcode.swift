@@ -107,6 +107,8 @@ import KeychainKit
         return UserDefaults.standard.bool(forKey: "net.domzilla.PasscodeKit.enableBiometrics")
     }
     
+    
+    // MARK: - Internal
     internal func create(_ code: String) {
         let sha256 = self.sha256(code)
         Keychain.default.set(sha256, forKey: self.keychainKey)
@@ -172,6 +174,7 @@ import KeychainKit
         return authenticated
     }
 }
+
 
 private extension Passcode {
     

@@ -13,8 +13,8 @@ internal class PasscodeTextField: UITextField {
     
 	private let radius: CGFloat = 8
 	private let spacing: CGFloat = 20
-    
     private var circleBackgroundLayer: CALayer
+    
     init(frame: CGRect, passcodeLength: Int) {
         
         self.passcodeLength = passcodeLength
@@ -94,6 +94,7 @@ internal class PasscodeTextField: UITextField {
     }
 }
 
+
 private extension PasscodeTextField {
     
     func updateText() {
@@ -114,6 +115,7 @@ private extension PasscodeTextField {
         }
     }
     
+    // MARK: - UITextField Notifications
     @objc func textDidChangeNotification(_ notification: Notification) {
         self.updateText()
     }

@@ -74,13 +74,7 @@ internal class PasscodeViewController: UIViewController {
         
         self.layoutContainerView()
     }
-    
-    // MARK: - Actions
-    @objc private func passcodeTextFieldAction(_ sender: Any?) {
-        self.didEnterPasscode()
-    }
-    
-    // MARK: - Public
+        
     func setFailedLabelText(_ text: String?) {
         failedLabel.isHidden = text == nil
         
@@ -106,7 +100,24 @@ internal class PasscodeViewController: UIViewController {
     func didEnterPasscode() {
         
     }
+}
+
+
+private extension PasscodeViewController {
     
+    func layoutContainerView() {
+        containerView.frame = CGRect(x: 0.0,
+                                     y: self.view.safeAreaInsets.top + (self.view.frame.height - self.view.safeAreaInsets.top - self.keyboardFrame.height)/2.0 - self.containerView.frame.height/2.0,
+                                     width: self.view.frame.width,
+                                     height: containerView.frame.height)
+    }
+    
+    // MARK: - Actions
+    @objc func passcodeTextFieldAction(_ sender: Any?) {
+        self.didEnterPasscode()
+    }
+        
+    // MARK: - Keyboard Notifications
     @objc func keyboardNotification(_ notification:Notification) {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -114,12 +125,5 @@ internal class PasscodeViewController: UIViewController {
                 self.layoutContainerView()
             }
         }
-    }
-    
-    private func layoutContainerView() {
-        containerView.frame = CGRect(x: 0.0,
-                                     y: self.view.safeAreaInsets.top + (self.view.frame.height - self.view.safeAreaInsets.top - self.keyboardFrame.height)/2.0 - self.containerView.frame.height/2.0,
-                                     width: self.view.frame.width,
-                                     height: containerView.frame.height)
     }
 }

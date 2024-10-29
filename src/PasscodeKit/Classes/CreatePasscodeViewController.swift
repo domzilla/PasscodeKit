@@ -64,14 +64,9 @@ internal class CreatePasscodeViewController: PasscodeViewController {
     }
 }
 
+
 private extension CreatePasscodeViewController {
     
-    // MARK: - Actions
-    @objc func cancelButtonAction(_ sender: Any?) {
-        self.dismiss(animated: true)
-    }
-    
-    // MARK: - Methods
     func updateUI() {
         if self.code == nil {
             self.infoLabel.text = NSLocalizedString("Enter your passcode",
@@ -98,5 +93,10 @@ private extension CreatePasscodeViewController {
         UIView.animate(withDuration: 0.15) {
             self.passcodeTextField.frame.origin.x = x
         }
+    }
+    
+    // MARK: - Actions
+    @objc func cancelButtonAction(_ sender: Any?) {
+        self.dismiss(animated: true)
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 @objc public class AppPasscode : Passcode {
     
+    @objc public static let shared = AppPasscode()
+    
     private static var key: String {
         get {
             if let key = UserDefaults.standard.string(forKey: "net.domzilla.PasscodeKit.AppPasscode.Key") {
@@ -25,8 +27,6 @@ import UIKit
     
     private var rootViewController: [String: UIViewController] = [:]
     private var locked: Bool = false
-    
-    @objc public static let shared = AppPasscode()
     
     @objc public init() {
         super.init(key: AppPasscode.key)
@@ -99,8 +99,10 @@ import UIKit
     }
 }
 
+
 private extension AppPasscode {
     
+    // MARK: - UIApplication Notifications
     @objc func applicationWillEnterForegroundNotification(_ notification: Notification) {
         self.lock()
         
