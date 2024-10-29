@@ -24,6 +24,7 @@ import UIKit
     }
     
     private var rootViewController: [String: UIViewController] = [:]
+    private var locked: Bool = false
     
     @objc public static let shared = AppPasscode()
     
@@ -35,8 +36,24 @@ import UIKit
         super.init(key: AppPasscode.key)
     }
     
+    @objc public static func applicationDidFinishLaunching () {
+        NotificationCenter.default.addObserver(AppPasscode.shared,
+                                               selector: #selector(applicationWillEnterForegroundNotification(_:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(AppPasscode.shared,
+                                               selector: #selector(applicationDidEnterBackgroundNotification(_:)),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+    }
+        
     @objc public func lock() {
+        if self.locked {
+            return
+        }
+        
         if self.isPasscodeSet() {
+            self.locked = true
             for scene in UIApplication.shared.connectedScenes {
                 if let windowScene = scene as? UIWindowScene {
                     let authenticateViewController = AuthenticateViewController(passcode: self)
@@ -74,9 +91,31 @@ import UIKit
                         }
                     }
                 }
+                self.locked = false
             }
         }
         
         return authenticated
+    }
+}
+
+private extension AppPasscode {
+    
+    @objc func applicationWillEnterForegroundNotification(_ notification: Notification) {
+        self.lock()
+        
+        if Passcode.isBiometricsEnabled() {
+            Task {
+                do {
+                    _ = try await self.authenticate(nil)
+                } catch {
+                    debugPrint(error)
+                }
+            }
+        }
+    }
+    
+    @objc func applicationDidEnterBackgroundNotification(_ notification: Notification) {
+        self.lock()
     }
 }

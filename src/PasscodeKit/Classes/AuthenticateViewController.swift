@@ -45,7 +45,7 @@ internal class AuthenticateViewController: PasscodeViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Passcode.isBiometricsEnabled() {
+        if Passcode.isBiometricsEnabled() && !(self.passcode is AppPasscode) {
             Task {
                 var authenticated = false
                 do {
