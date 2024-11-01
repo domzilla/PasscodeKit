@@ -87,11 +87,21 @@ internal enum PasscodeOption: String {
             authenticateViewController.didMove(toParent: viewController)
         }
     }
-    
+        
     @objc public func create(presentOn viewController: UIViewController, animated: Bool) {
         let createPasscodeViewController = CreatePasscodeViewController(passcode: self)
         let navigationController = UINavigationController(rootViewController: createPasscodeViewController)
         viewController.present(navigationController, animated: animated)
+    }
+    
+    @objc public func create(_ code: String) {
+        let dict = [self.sha256Key: self.sha256(code),
+                    self.optionKey: self.option(for: code).rawValue]
+        Keychain.default.set(dict, forKey: self.keychainKey)
+        DispatchQueue.main.async {
+            self.delegate?.passcodeCreated?(self)
+            NotificationCenter.default.post(name: Passcode.PasscodeCreatedNotification, object: self)
+        }
     }
 
     @objc public func remove(presentOn viewController: UIViewController, animated: Bool) {
@@ -102,12 +112,70 @@ internal enum PasscodeOption: String {
         }
     }
     
+    @objc public func remove() {
+        if self.isPasscodeSet() {
+            Keychain.default.removeObject(forKey: self.keychainKey)
+            DispatchQueue.main.async {
+                self.delegate?.passcodeRemoved?(self)
+                NotificationCenter.default.post(name: Passcode.PasscodeRemovedNotification, object: self)
+            }
+        }
+    }
+    
     @objc public func change(presentOn viewController: UIViewController, animated: Bool) {
         if self.isPasscodeSet() {
             let changePasscodeViewController = ChangePasscodeViewController(passcode: self)
             let navigationController = UINavigationController(rootViewController: changePasscodeViewController)
             viewController.present(navigationController, animated: animated)
         }
+    }
+    
+    @objc public func change(_ code: String) {
+        if self.isPasscodeSet() {
+            let dict = [self.sha256Key: self.sha256(code),
+                        self.optionKey: self.option(for: code).rawValue]
+            Keychain.default.set(dict, forKey: self.keychainKey)
+            DispatchQueue.main.async {
+                self.delegate?.passcodeChanged?(self)
+                NotificationCenter.default.post(name: Passcode.PasscodeChangedNotification, object: self)
+            }
+        }
+    }
+    
+    @objc public func authenticate(_ code: String?) async throws -> Bool {
+        var authenticated = false
+        
+        if let code = code {
+            if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
+                let storedSha256 = dict[self.sha256Key];
+                let sha256 = self.sha256(code)
+                authenticated = (sha256 == storedSha256)
+            }
+        } else if Passcode.isBiometricsEnabled() {
+            let context = LAContext()
+            var error: NSError?
+            let biometricsAvailable = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+            if let error = error {debugPrint(error)}
+            
+            if biometricsAvailable {
+                #warning("TODO localizedReason")
+                authenticated = try await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "LOL")
+            }
+        }
+        
+        if authenticated {
+            DispatchQueue.main.async {
+                self.delegate?.passcodeAuthenticated?(self)
+                NotificationCenter.default.post(name: Passcode.PasscodeAuthenticatedNotification, object: self)
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.delegate?.passcodeAuthenticationFaliure?(self)
+                NotificationCenter.default.post(name: Passcode.PasscodeAuthenticationFaliureNotification, object: self)
+            }
+        }
+        
+        return authenticated
     }
     
     @objc public func isPasscodeSet() -> Bool {
@@ -143,76 +211,6 @@ internal enum PasscodeOption: String {
     
     @objc public static func isBiometricsEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: "net.domzilla.PasscodeKit.enableBiometrics")
-    }
-    
-    
-    // MARK: - Internal
-    internal func create(_ code: String) {
-        let dict = [self.sha256Key: self.sha256(code),
-                    self.optionKey: self.option(for: code).rawValue]
-        Keychain.default.set(dict, forKey: self.keychainKey)
-        DispatchQueue.main.async {
-            self.delegate?.passcodeCreated?(self)
-            NotificationCenter.default.post(name: Passcode.PasscodeCreatedNotification, object: self)
-        }
-    }
-    
-    internal func change(_ code: String) {
-        if self.isPasscodeSet() {
-            let dict = [self.sha256Key: self.sha256(code),
-                        self.optionKey: self.option(for: code).rawValue]
-            Keychain.default.set(dict, forKey: self.keychainKey)
-            DispatchQueue.main.async {
-                self.delegate?.passcodeChanged?(self)
-                NotificationCenter.default.post(name: Passcode.PasscodeChangedNotification, object: self)
-            }
-        }
-    }
-    
-    internal func remove() {
-        if self.isPasscodeSet() {
-            Keychain.default.removeObject(forKey: self.keychainKey)
-            DispatchQueue.main.async {
-                self.delegate?.passcodeRemoved?(self)
-                NotificationCenter.default.post(name: Passcode.PasscodeRemovedNotification, object: self)
-            }
-        }
-    }
-
-    internal func authenticate(_ code: String?) async throws -> Bool {
-        var authenticated = false
-        
-        if let code = code {
-            if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
-                let storedSha256 = dict[self.sha256Key];
-                let sha256 = self.sha256(code)
-                authenticated = (sha256 == storedSha256)
-            }
-        } else if Passcode.isBiometricsEnabled() {
-            let context = LAContext()
-            var error: NSError?
-            let biometricsAvailable = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            if let error = error {debugPrint(error)}
-            
-            if biometricsAvailable {
-                #warning("TODO localizedReason")
-                authenticated = try await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "LOL")
-            }
-        }
-        
-        if authenticated {
-            DispatchQueue.main.async {
-                self.delegate?.passcodeAuthenticated?(self)
-                NotificationCenter.default.post(name: Passcode.PasscodeAuthenticatedNotification, object: self)
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.delegate?.passcodeAuthenticationFaliure?(self)
-                NotificationCenter.default.post(name: Passcode.PasscodeAuthenticationFaliureNotification, object: self)
-            }
-        }
-        
-        return authenticated
     }
 }
 
