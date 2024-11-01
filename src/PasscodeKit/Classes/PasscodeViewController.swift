@@ -16,6 +16,8 @@ internal class PasscodeViewController: UIViewController {
     var infoLabel: UILabel!
     var failedLabel: UILabel!
     
+    var optionButton: UIButton!
+    
     private var keyboardFrame: CGRect = CGRectZero
     
     init(passcode: Passcode) {
@@ -41,7 +43,7 @@ internal class PasscodeViewController: UIViewController {
         
         self.view.backgroundColor = .systemBackground
         
-        containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 100.0))
+        containerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 120.0))
         self.view.addSubview(containerView)
         
         infoLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: containerView.frame.width, height: 30.0))
@@ -51,13 +53,14 @@ internal class PasscodeViewController: UIViewController {
         infoLabel.font = UIFont.systemFont(ofSize: 17)
         containerView.addSubview(infoLabel)
         
-        passcodeTextField = PasscodeTextField(frame: CGRect(x: 10.0, y: 35.0, width: containerView.frame.width - 20.0, height: 30.0),
-                                              passcodeLength: 4)
-        passcodeTextField.autoresizingMask = .flexibleWidth
+        passcodeTextField = PasscodeTextField(frame: CGRect(x: containerView.frame.width/2.0 - 240.0/2.0, y: 35.0, width: 240.0, height: 50.0),
+                                              passcodeOption: passcode.option)
+        passcodeTextField.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         passcodeTextField.addTarget(self, action: #selector(passcodeTextFieldAction(_:)), for: .editingDidEndOnExit)
+        passcodeTextField.delegate = self
         containerView.addSubview(passcodeTextField)
         
-        failedLabel = UILabel(frame: CGRect(x: 0.0, y: 70.0, width: 0.0, height: 0.0))
+        failedLabel = UILabel(frame: CGRect(x: 0.0, y: 85.0, width: 0.0, height: 0.0))
         failedLabel.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         failedLabel.textAlignment = .center
         failedLabel.textColor = .white
@@ -67,6 +70,34 @@ internal class PasscodeViewController: UIViewController {
         failedLabel.isHidden = true
         failedLabel.clipsToBounds = true
         containerView.addSubview(failedLabel)
+        
+        var optionButtonConfiguration = UIButton.Configuration.plain()
+        optionButtonConfiguration.title = NSLocalizedString("Code options",
+                                                            bundle: Bundle.PasscodeKitRessourceBundle,
+                                                            comment: "Title for code options button")
+        optionButton = UIButton(configuration: optionButtonConfiguration)
+        optionButton.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+        optionButton.changesSelectionAsPrimaryAction = false
+        optionButton.showsMenuAsPrimaryAction = true
+        optionButton.menu = UIMenu(children: [UIAction(title: NSLocalizedString("4-Digit Numeric Code",
+                                                                                bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                comment: "Code option: 4-digit numeric"),
+                                                       handler: { action in self.passcodeTextField.passcodeOption = .fourDigits}),
+                                              UIAction(title: NSLocalizedString("6-Digit Numeric Code",
+                                                                                bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                comment: "Code option: 6-digit numeric"), 
+                                                       handler: { action in self.passcodeTextField.passcodeOption = .sixDigits}),
+                                              UIAction(title: NSLocalizedString("Custom Alphanumeric Code",
+                                                                                bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                comment: "Code option: custom alphanumeric"), 
+                                                       handler: { action in self.passcodeTextField.passcodeOption = .alphanumerical})])
+        optionButton.sizeToFit()
+        optionButton.frame = CGRect(x: containerView.frame.width/2.0 - optionButton.frame.width/2.0,
+                                    y: 85.0,
+                                    width: optionButton.frame.width,
+                                    height: 30.0)
+        optionButton.isHidden = true
+        containerView.addSubview(optionButton)
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,6 +133,13 @@ internal class PasscodeViewController: UIViewController {
     }
 }
 
+extension PasscodeViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.didEnterPasscode()
+        return false;
+    }
+}
 
 private extension PasscodeViewController {
     
@@ -116,6 +154,8 @@ private extension PasscodeViewController {
     @objc func passcodeTextFieldAction(_ sender: Any?) {
         self.didEnterPasscode()
     }
+    
+
         
     // MARK: - Keyboard Notifications
     @objc func keyboardNotification(_ notification:Notification) {

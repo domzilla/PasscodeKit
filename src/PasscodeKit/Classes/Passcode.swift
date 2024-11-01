@@ -21,6 +21,34 @@ import KeychainKit
     @objc optional func passcodeAuthenticationFaliure(_ passcode: Passcode)
 }
 
+internal enum PasscodeOption: String {
+    case fourDigits
+    case sixDigits
+    case alphanumerical
+    
+    init(rawValue: String?) {
+        switch rawValue {
+        case PasscodeOption.fourDigits.rawValue:
+            self = .fourDigits
+        case PasscodeOption.sixDigits.rawValue:
+            self = .sixDigits
+        default:
+            self = .alphanumerical
+        }
+    }
+    
+    var length: Int {
+        switch self {
+        case .fourDigits:
+            return 4
+        case .sixDigits:
+            return 6
+        default:
+            return Int.max
+        }
+    }
+}
+
 @objc public class Passcode : NSObject {
     
     @objc public static let PasscodeCreatedNotification = NSNotification.Name("PKPasscodeCreatedNotification")
@@ -31,7 +59,17 @@ import KeychainKit
     
     let key: String
     private let keychainKey: String
+    private let sha256Key = "sha256"
+    private let optionKey = "option"
+    
+    internal var option: PasscodeOption {
+        if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
+            return PasscodeOption(rawValue: dict[self.optionKey])
+        }
         
+        return .fourDigits
+    }
+            
     var delegate: PasscodeDelegate?
     
     @objc public init(key: String) {
@@ -73,7 +111,7 @@ import KeychainKit
     }
     
     @objc public func isPasscodeSet() -> Bool {
-        return Keychain.default.string(forKey: self.keychainKey) != nil
+        return Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) != nil
     }
     
     @objc public static func canEnableBiometrics() -> Bool {
@@ -110,8 +148,9 @@ import KeychainKit
     
     // MARK: - Internal
     internal func create(_ code: String) {
-        let sha256 = self.sha256(code)
-        Keychain.default.set(sha256, forKey: self.keychainKey)
+        let dict = [self.sha256Key: self.sha256(code),
+                    self.optionKey: self.option(for: code).rawValue]
+        Keychain.default.set(dict, forKey: self.keychainKey)
         DispatchQueue.main.async {
             self.delegate?.passcodeCreated?(self)
             NotificationCenter.default.post(name: Passcode.PasscodeCreatedNotification, object: self)
@@ -120,8 +159,9 @@ import KeychainKit
     
     internal func change(_ code: String) {
         if self.isPasscodeSet() {
-            let sha256 = self.sha256(code)
-            Keychain.default.set(sha256, forKey: self.keychainKey)
+            let dict = [self.sha256Key: self.sha256(code),
+                        self.optionKey: self.option(for: code).rawValue]
+            Keychain.default.set(dict, forKey: self.keychainKey)
             DispatchQueue.main.async {
                 self.delegate?.passcodeChanged?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeChangedNotification, object: self)
@@ -143,7 +183,8 @@ import KeychainKit
         var authenticated = false
         
         if let code = code {
-            if let storedSha256 = Keychain.default.string(forKey: self.keychainKey) {
+            if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
+                let storedSha256 = dict[self.sha256Key];
                 let sha256 = self.sha256(code)
                 authenticated = (sha256 == storedSha256)
             }
@@ -182,5 +223,22 @@ private extension Passcode {
         let data = Data(string.utf8)
         let hash = SHA256.hash(data: data)
         return hash.compactMap {String(format: "%02x", $0)}.joined()
+    }
+    
+    func option(for code: String) -> PasscodeOption {
+        
+        let digitCharacters = CharacterSet(charactersIn: "0123456789")
+        let isNumeric = CharacterSet(charactersIn: code).isSubset(of: digitCharacters)
+        
+        if isNumeric {
+            if code.count == 4 {
+                return .fourDigits
+            }
+            if code.count == 6 {
+                return .sixDigits
+            }
+        }
+        
+        return .alphanumerical
     }
 }

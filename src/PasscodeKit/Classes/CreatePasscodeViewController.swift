@@ -48,7 +48,6 @@ internal class CreatePasscodeViewController: PasscodeViewController {
                 self.passcode.create(code)
                 self.dismiss(animated: true)
             } else {
-                self.code = nil
                 self.mismatch = true
                 self.passcodeTextField.clear()
                 self.animateFailure()
@@ -68,14 +67,22 @@ internal class CreatePasscodeViewController: PasscodeViewController {
 private extension CreatePasscodeViewController {
     
     func updateUI() {
+        
+        self.optionButton.isHidden = true
+        
         if self.code == nil {
             self.infoLabel.text = NSLocalizedString("Enter your passcode",
                                                     bundle: Bundle.PasscodeKitRessourceBundle,
                                                     comment: "Promt user to enter passcode")
+            self.optionButton.isHidden = false
+            self.passcodeTextField.returnKeyType = .next
+            self.passcodeTextField.reloadInputViews()
         } else {
             self.infoLabel.text = NSLocalizedString("Verify your passcode",
                                                     bundle: Bundle.PasscodeKitRessourceBundle,
                                                     comment: "Promt user to verify passcode")
+            self.passcodeTextField.returnKeyType = .done
+            self.passcodeTextField.reloadInputViews()
         }
         
         if self.mismatch {

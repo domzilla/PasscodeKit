@@ -28,6 +28,9 @@ internal class RemovePasscodeViewController: PasscodeViewController {
                                                 bundle: Bundle.PasscodeKitRessourceBundle,
                                                 comment: "Promt user to enter passcode")
         
+        self.passcodeTextField.returnKeyType = .done
+        self.passcodeTextField.reloadInputViews()
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                  target: self,
                                                                  action: #selector(cancelButtonAction(_:)))

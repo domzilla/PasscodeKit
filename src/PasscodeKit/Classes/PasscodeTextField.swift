@@ -9,44 +9,70 @@ import UIKit
 
 internal class PasscodeTextField: UITextField {
 
-    let passcodeLength: Int
+    private var _passcodeOption: PasscodeOption = .fourDigits
+    var passcodeOption: PasscodeOption {
+        get {
+            return _passcodeOption
+        }
+        set {
+            _passcodeOption = newValue
+            
+            self.circleBackgroundLayer.removeFromSuperlayer()
+            
+
+            
+            if self.isNumericPasscode {
+                self.circleBackgroundLayer = CALayer()
+                self.layer.addSublayer(self.circleBackgroundLayer)
+                
+                self.tintColor = .clear
+                self.textColor = .clear
+                self.backgroundColor = .clear
+                self.keyboardType = .numberPad
+                self.font = UIFont.systemFont(ofSize: 0)
+                
+                let circleCenter = CGPoint(x: radius, y: radius)
+                let circlePath = UIBezierPath(arcCenter: circleCenter,
+                                              radius: radius,
+                                              startAngle: 0,
+                                              endAngle: 2 * .pi,
+                                              clockwise: false)
+                
+                for _ in 0..<self.passcodeOption.length {
+                    let circleLayer = CAShapeLayer()
+                    circleLayer.path = circlePath.cgPath
+                    circleLayer.fillColor = nil
+                    circleLayer.lineWidth = 1
+                    self.circleBackgroundLayer.addSublayer(circleLayer)
+                }
+                
+                self.updateText()
+            } else {
+                self.tintColor = nil
+                self.textColor = .label
+                self.backgroundColor = .secondarySystemFill
+                self.keyboardType = .default
+                self.font = UIFont.boldSystemFont(ofSize: 22)
+            }
+            
+            self.reloadInputViews()
+        }
+    }
     
 	private let radius: CGFloat = 8
 	private let spacing: CGFloat = 20
-    private var circleBackgroundLayer: CALayer
+    private var circleBackgroundLayer: CALayer = CALayer()
     
-    init(frame: CGRect, passcodeLength: Int) {
-        
-        self.passcodeLength = passcodeLength
-        
-        self.circleBackgroundLayer = CALayer()
-        
+    init(frame: CGRect, passcodeOption: PasscodeOption) {
 		super.init(frame: frame)
-
-        self.tintColor = .clear
-        self.textColor = .clear
+        
         self.borderStyle = .none
-        self.keyboardType = .numberPad
-        self.font = UIFont.systemFont(ofSize: 0)
+        self.layer.cornerRadius = 10.0
+        self.textAlignment = .center
+        self.isSecureTextEntry = true
+        self.returnKeyType = .done
         
-        self.layer.addSublayer(circleBackgroundLayer)
-        
-        let circleCenter = CGPoint(x: radius, y: radius)
-        let circlePath = UIBezierPath(arcCenter: circleCenter, 
-                                      radius: radius,
-                                      startAngle: 0,
-                                      endAngle: 2 * .pi,
-                                      clockwise: false)
-        
-        for _ in 0..<self.passcodeLength {
-            let circleLayer = CAShapeLayer()
-            circleLayer.path = circlePath.cgPath
-            circleLayer.fillColor = nil
-            circleLayer.lineWidth = 1
-            self.circleBackgroundLayer.addSublayer(circleLayer)
-        }
-        
-        self.updateText()
+        self.passcodeOption = passcodeOption
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textDidChangeNotification(_:)),
@@ -58,6 +84,10 @@ internal class PasscodeTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+        
 	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		return false
 	}
@@ -65,19 +95,21 @@ internal class PasscodeTextField: UITextField {
 	override func layoutSubviews() {
 		super.layoutSubviews()
         
-        let circles = CGFloat(self.passcodeLength)
-        let circleBackgroundLayerWidth = (2 * radius * circles) + spacing * (circles - 1)
-        circleBackgroundLayer.frame = CGRect(x: (self.frame.size.width - circleBackgroundLayerWidth) / 2.0,
-                                             y: (self.frame.size.height - 2 * radius) / 2.0,
-                                             width: circleBackgroundLayerWidth,
-                                             height: 2 * radius)
-        
-        if let circleLayers = self.circleBackgroundLayer.sublayers {
-            for (i, circleLayer) in circleLayers.enumerated() {
-                circleLayer.frame = CGRect(x: (2 * radius + spacing) * CGFloat(i),
-                                           y: 0,
-                                           width: 2 * radius,
-                                           height: 2 * radius)
+        if self.isNumericPasscode {
+            let circles = CGFloat(self.passcodeOption.length)
+            let circleBackgroundLayerWidth = (2 * radius * circles) + spacing * (circles - 1)
+            self.circleBackgroundLayer.frame = CGRect(x: (self.frame.size.width - circleBackgroundLayerWidth) / 2.0,
+                                                      y: (self.frame.size.height - 2 * radius) / 2.0,
+                                                      width: circleBackgroundLayerWidth,
+                                                      height: 2 * radius)
+            
+            if let circleLayers = self.circleBackgroundLayer.sublayers {
+                for (i, circleLayer) in circleLayers.enumerated() {
+                    circleLayer.frame = CGRect(x: (2 * radius + spacing) * CGFloat(i),
+                                               y: 0,
+                                               width: 2 * radius,
+                                               height: 2 * radius)
+                }
             }
         }
 	}
@@ -97,9 +129,16 @@ internal class PasscodeTextField: UITextField {
 
 private extension PasscodeTextField {
     
+    var isNumericPasscode: Bool {
+        return self.passcodeOption == .fourDigits || self.passcodeOption == .sixDigits
+    }
+    
     func updateText() {
-        let currentLength = self.text?.count ?? 0
+        if !self.isNumericPasscode {
+            return
+        }
         
+        let currentLength = self.text?.count ?? 0
         let circleColor = UIColor.label.cgColor
         
         if let circleLayers = self.circleBackgroundLayer.sublayers {
@@ -110,7 +149,7 @@ private extension PasscodeTextField {
             }
         }
         
-        if currentLength >= self.passcodeLength {
+        if currentLength >= self.passcodeOption.length {
             self.sendActions(for: .editingDidEndOnExit)
         }
     }

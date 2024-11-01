@@ -98,18 +98,27 @@ private extension ChangePasscodeViewController {
     
     func updateUI() {
         
+        self.optionButton.isHidden = true
+        
         if self.state == .enterOldPasscode {
             self.infoLabel.text = NSLocalizedString("Enter your passcode",
                                                     bundle: Bundle.PasscodeKitRessourceBundle,
                                                     comment: "Promt user to enter passcode")
+            self.passcodeTextField.returnKeyType = .next
+            self.passcodeTextField.reloadInputViews()
         } else if state == .enterNewPasscode {
             self.infoLabel.text = NSLocalizedString("Enter new passcode",
                                                     bundle: Bundle.PasscodeKitRessourceBundle,
                                                     comment: "Promt user to enter new passcode")
+            self.passcodeTextField.returnKeyType = .next
+            self.passcodeTextField.reloadInputViews()
+            self.optionButton.isHidden = false
         } else if state == .verifyNewPasscode {
             self.infoLabel.text = NSLocalizedString("Verify new passcode",
                                                     bundle: Bundle.PasscodeKitRessourceBundle,
                                                     comment: "Promt user to verify new passcode")
+            self.passcodeTextField.returnKeyType = .done
+            self.passcodeTextField.reloadInputViews()
         }
         
         if self.mismatch {

@@ -32,6 +32,9 @@ internal class AuthenticateViewController: PasscodeViewController {
         self.infoLabel.text = NSLocalizedString("Enter your passcode",
                                                 bundle: Bundle.PasscodeKitRessourceBundle,
                                                 comment: "Promt user to enter passcode")
+        
+        self.passcodeTextField.returnKeyType = .done
+        self.passcodeTextField.reloadInputViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
