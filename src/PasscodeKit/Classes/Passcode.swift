@@ -9,7 +9,6 @@ import UIKit
 import LocalAuthentication
 
 import CryptoKit
-import KeychainKit
 
 @objc protocol PasscodeDelegate {
 
@@ -58,12 +57,12 @@ internal enum PasscodeOption: String {
     @objc public static let PasscodeAuthenticationFaliureNotification = NSNotification.Name("PKPasscodeAuthenticationFaliureNotification")
     
     let key: String
-    private let keychainKey: String
+    private let userDefaultsKey: String
     private let sha256Key = "sha256"
     private let optionKey = "option"
     
     internal var option: PasscodeOption {
-        if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
+        if let dict = UserDefaults.standard.object(forKey: self.userDefaultsKey) as? [String: String] {
             return PasscodeOption(rawValue: dict[self.optionKey])
         }
         
@@ -74,7 +73,7 @@ internal enum PasscodeOption: String {
     
     @objc public init(key: String) {
         self.key = key
-        self.keychainKey = "net.domzilla.PasscodeKit." + self.key
+        self.userDefaultsKey = "net.domzilla.PasscodeKit." + self.key
         
         super.init()
     }
@@ -97,7 +96,7 @@ internal enum PasscodeOption: String {
     @objc public func create(_ code: String) {
         let dict = [self.sha256Key: self.sha256(code),
                     self.optionKey: self.option(for: code).rawValue]
-        Keychain.default.set(dict, forKey: self.keychainKey)
+        UserDefaults.standard.setValue(dict, forKey: self.userDefaultsKey)
         DispatchQueue.main.async {
             self.delegate?.passcodeCreated?(self)
             NotificationCenter.default.post(name: Passcode.PasscodeCreatedNotification, object: self)
@@ -114,7 +113,7 @@ internal enum PasscodeOption: String {
     
     @objc public func remove() {
         if self.isPasscodeSet() {
-            Keychain.default.removeObject(forKey: self.keychainKey)
+            UserDefaults.standard.removeObject(forKey: self.userDefaultsKey)
             DispatchQueue.main.async {
                 self.delegate?.passcodeRemoved?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeRemovedNotification, object: self)
@@ -134,7 +133,7 @@ internal enum PasscodeOption: String {
         if self.isPasscodeSet() {
             let dict = [self.sha256Key: self.sha256(code),
                         self.optionKey: self.option(for: code).rawValue]
-            Keychain.default.set(dict, forKey: self.keychainKey)
+            UserDefaults.standard.setValue(dict, forKey: self.userDefaultsKey)
             DispatchQueue.main.async {
                 self.delegate?.passcodeChanged?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeChangedNotification, object: self)
@@ -146,7 +145,7 @@ internal enum PasscodeOption: String {
         var authenticated = false
         
         if let code = code {
-            if let dict = Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) {
+            if let dict = UserDefaults.standard.object(forKey: self.userDefaultsKey) as? [String: String] {
                 let storedSha256 = dict[self.sha256Key];
                 let sha256 = self.sha256(code)
                 authenticated = (sha256 == storedSha256)
@@ -179,7 +178,7 @@ internal enum PasscodeOption: String {
     }
     
     @objc public func isPasscodeSet() -> Bool {
-        return Keychain.default.object(of: [String: String].self, forKey: self.keychainKey) != nil
+        return UserDefaults.standard.object(forKey: self.userDefaultsKey) != nil
     }
     
     @objc public static func canEnableBiometrics() -> Bool {

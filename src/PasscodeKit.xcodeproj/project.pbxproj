@@ -16,28 +16,9 @@
 		F2E1BE252CC699D6007D9E62 /* ChangePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */; };
 		F2E1BE272CC699E5007D9E62 /* RemovePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */; };
 		F2E1BE342CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE332CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift */; };
-		F2E1BE3D2CC77199007D9E62 /* KeychainKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */; };
-		F2E1BE3E2CC77199007D9E62 /* KeychainKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2E1BE7D2CC779CD007D9E62 /* Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */; };
 		F2E1BE812CC77BF4007D9E62 /* AppPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F2E1BE3A2CC77185007D9E62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F24B08B82C9C2CD300345376;
-			remoteInfo = KeychainKit;
-		};
-		F2E1BE402CC771A0007D9E62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F24B08B72C9C2CD300345376;
-			remoteInfo = KeychainKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F2E1BE3F2CC77199007D9E62 /* Embed Frameworks */ = {
@@ -46,7 +27,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F2E1BE3E2CC77199007D9E62 /* KeychainKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,7 +44,6 @@
 		F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeViewController.swift; sourceTree = "<group>"; };
 		F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovePasscodeViewController.swift; sourceTree = "<group>"; };
 		F2E1BE332CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeKitRessourceBundle.swift; sourceTree = "<group>"; };
-		F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeychainKit.xcodeproj; path = ../../KeychainKit/src/KeychainKit.xcodeproj; sourceTree = "<group>"; };
 		F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passcode.swift; sourceTree = "<group>"; };
 		F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPasscode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +53,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2E1BE3D2CC77199007D9E62 /* KeychainKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +62,6 @@
 		F2E1BE042CBA48B6007D9E62 = {
 			isa = PBXGroup;
 			children = (
-				F2E1BE352CC77167007D9E62 /* Extern */,
 				F2E1BE102CBA48B6007D9E62 /* PasscodeKit */,
 				F2E1BE0F2CBA48B6007D9E62 /* Products */,
 				F2E1BE3C2CC77199007D9E62 /* Frameworks */,
@@ -149,22 +126,6 @@
 			name = Controlls;
 			sourceTree = "<group>";
 		};
-		F2E1BE352CC77167007D9E62 /* Extern */ = {
-			isa = PBXGroup;
-			children = (
-				F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */,
-			);
-			name = Extern;
-			sourceTree = "<group>";
-		};
-		F2E1BE372CC77185007D9E62 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F2E1BE3C2CC77199007D9E62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +160,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F2E1BE412CC771A0007D9E62 /* PBXTargetDependency */,
 			);
 			name = PasscodeKit;
 			productName = PasscodeKit;
@@ -232,28 +192,12 @@
 			mainGroup = F2E1BE042CBA48B6007D9E62;
 			productRefGroup = F2E1BE0F2CBA48B6007D9E62 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F2E1BE372CC77185007D9E62 /* Products */;
-					ProjectRef = F2E1BE362CC77185007D9E62 /* KeychainKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F2E1BE0D2CBA48B6007D9E62 /* PasscodeKit */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F2E1BE3B2CC77185007D9E62 /* KeychainKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KeychainKit.framework;
-			remoteRef = F2E1BE3A2CC77185007D9E62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F2E1BE0C2CBA48B6007D9E62 /* Resources */ = {
@@ -284,14 +228,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F2E1BE412CC771A0007D9E62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KeychainKit;
-			targetProxy = F2E1BE402CC771A0007D9E62 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F2E1BE132CBA48B6007D9E62 /* Debug */ = {
@@ -347,7 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -407,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -435,7 +371,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +384,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +407,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +420,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

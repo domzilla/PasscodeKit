@@ -11,19 +11,7 @@ import UIKit
     
     @objc public static let shared = AppPasscode()
     
-    private static var key: String {
-        get {
-            if let key = UserDefaults.standard.string(forKey: "net.domzilla.PasscodeKit.AppPasscode.Key") {
-                return key
-            }
-            
-            let key = UUID().uuidString
-            UserDefaults.standard.setValue(key, forKey: "net.domzilla.PasscodeKit.AppPasscode.Key")
-            UserDefaults.standard.synchronize()
-            
-            return key
-        }
-    }
+    private static let key = "AppPasscode.Key"
     
     private var rootViewController: [String: UIViewController] = [:]
     private var locked: Bool = false
