@@ -139,9 +139,13 @@ private extension PasscodeTextField {
         }
         
         let currentLength = self.text?.count ?? 0
-        let circleColor = UIColor.label.cgColor
-        
         if let circleLayers = self.circleBackgroundLayer.sublayers {
+            
+            var circleColor = UIColor.black.cgColor
+            if self.traitCollection.userInterfaceStyle == .dark {
+                circleColor = UIColor.white.cgColor
+            }
+            
             for (i, circleLayer) in circleLayers.enumerated() {
                 guard let shapeLayer = circleLayer as? CAShapeLayer else { continue }
                 shapeLayer.fillColor = (i < currentLength) ? circleColor : nil
