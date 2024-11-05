@@ -154,7 +154,7 @@ internal enum PasscodeOption: String {
             let context = LAContext()
             var error: NSError?
             let biometricsAvailable = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            if let error = error {debugPrint(error)}
+            if let error = error {throw error}
             
             if biometricsAvailable {
                 #warning("TODO localizedReason")
@@ -192,8 +192,12 @@ internal enum PasscodeOption: String {
     
     @objc public static func enableBiometrics(_ enable: Bool) async throws -> Bool {
         if enable {
-            if self.canEnableBiometrics() {
-                let context = LAContext()
+            let context = LAContext()
+            var error: NSError?
+            let canEnableBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+            if let error = error {throw error}
+            
+            if canEnableBiometrics {
                 #warning("TODO localizedReason")
                 let enabled = try await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "LOL")
                 UserDefaults.standard.setValue(enabled, forKey: "net.domzilla.PasscodeKit.enableBiometrics")
