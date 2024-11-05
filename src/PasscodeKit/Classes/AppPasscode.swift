@@ -33,6 +33,17 @@ import UIKit
                                                selector: #selector(applicationDidEnterBackgroundNotification(_:)),
                                                name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
+        AppPasscode.shared.lock()
+        
+        if Passcode.isBiometricsEnabled() {
+            Task {
+                do {
+                    _ = try await AppPasscode.shared.authenticate(nil)
+                } catch {
+                    debugPrint(error)
+                }
+            }
+        }
     }
         
     @objc public func lock() {
