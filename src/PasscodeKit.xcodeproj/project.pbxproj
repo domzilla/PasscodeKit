@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2A564802CD8EB2B0022F55D /* Biometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5647F2CD8EB2B0022F55D /* Biometry.swift */; };
 		F2E1BE122CBA48B6007D9E62 /* PasscodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2E1BE1B2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */; };
 		F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F2A5647F2CD8EB2B0022F55D /* Biometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biometry.swift; sourceTree = "<group>"; };
 		F2E1BE0E2CBA48B6007D9E62 /* PasscodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasscodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasscodeKit.h; sourceTree = "<group>"; };
 		F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				F2E1BE7C2CC779CD007D9E62 /* Passcode.swift */,
 				F2E1BE802CC77BF4007D9E62 /* AppPasscode.swift */,
+				F2A5647F2CD8EB2B0022F55D /* Biometry.swift */,
 				F2E1BE282CC699F3007D9E62 /* ViewController */,
 				F2E1BE292CC699FF007D9E62 /* Controlls */,
 			);
@@ -219,6 +222,7 @@
 				F2E1BE212CC699AB007D9E62 /* AuthenticateViewController.swift in Sources */,
 				F2E1BE232CC699C4007D9E62 /* CreatePasscodeViewController.swift in Sources */,
 				F2E1BE7D2CC779CD007D9E62 /* Passcode.swift in Sources */,
+				F2A564802CD8EB2B0022F55D /* Biometry.swift in Sources */,
 				F2E1BE342CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift in Sources */,
 				F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */,
 				F2E1BE272CC699E5007D9E62 /* RemovePasscodeViewController.swift in Sources */,
