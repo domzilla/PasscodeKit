@@ -22,7 +22,7 @@ import LocalAuthentication
         
         let context = LAContext()
         var error: NSError?
-        let canEnableBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
         if let error = error {debugPrint(error)}
         
         self.type = context.biometryType
@@ -40,6 +40,30 @@ import LocalAuthentication
         } else if self.type == .touchID {
             self.name = "Touch ID"
             self.imageName = "touchid"
+        }
+    }
+    
+    @objc public static func presentErrorAlert(on viewController: UIViewController, with error: Error, appName: String) {
+        if let error = error as? LAError {
+            if error.code == .biometryNotAvailable {
+                let alertController = UIAlertController(title: error.localizedDescription,
+                                                        message: String(format: NSLocalizedString("%@ doesn't have access to biometric authentification.", 
+                                                                                                  bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                                  comment: "Message that the app doens't have access rights to biometric authentification. Placeholder is app name."), appName),
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", 
+                                                                                 bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                 comment: "Title for 'Cancel' Button"), 
+                                                        style: .cancel))
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings",
+                                                                                 bundle: Bundle.PasscodeKitRessourceBundle,
+                                                                                 comment: "Title for 'Settings' Button"), 
+                                                        style: .default,
+                                                        handler: { action in
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                }))
+                viewController.present(alertController, animated: true)
+            }
         }
     }
 }
