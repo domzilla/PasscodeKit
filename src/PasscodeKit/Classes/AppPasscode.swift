@@ -73,6 +73,10 @@ import UIKit
     }
     
     @objc public override func authenticate(_ code: String?) async throws -> Bool {
+        if !self.locked {
+            return true
+        }
+        
         let authenticated = try await super.authenticate(code)
         
         DispatchQueue.main.async {
