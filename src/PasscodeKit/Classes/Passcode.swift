@@ -56,14 +56,16 @@ internal enum PasscodeOption: String {
     @objc public static let PasscodeAuthenticatedNotification = NSNotification.Name("PKPasscodeAuthenticatedNotification")
     @objc public static let PasscodeAuthenticationFaliureNotification = NSNotification.Name("PKPasscodeAuthenticationFaliureNotification")
     
+    @objc public static var legacyMD5Support: Bool = false
+    
     let key: String
     private let userDefaultsKey: String
-    private let sha256Key = "sha256"
-    private let optionKey = "option"
+    private static let hashKey = "hash"
+    private static let optionKey = "option"
     
     internal var option: PasscodeOption {
         if let dict = UserDefaults.standard.object(forKey: self.userDefaultsKey) as? [String: String] {
-            return PasscodeOption(rawValue: dict[self.optionKey])
+            return PasscodeOption(rawValue: dict[Passcode.optionKey])
         }
         
         return .fourDigits
@@ -73,7 +75,7 @@ internal enum PasscodeOption: String {
     
     @objc public init(key: String) {
         self.key = key
-        self.userDefaultsKey = "net.domzilla.PasscodeKit." + self.key
+        self.userDefaultsKey = Passcode.userDefaultsKey(self.key)
         
         super.init()
     }
@@ -94,9 +96,10 @@ internal enum PasscodeOption: String {
     }
     
     @objc public func create(_ code: String) {
-        let dict = [self.sha256Key: self.sha256(code),
-                    self.optionKey: self.option(for: code).rawValue]
+        let dict = [Passcode.hashKey: self.hash(code),
+                    Passcode.optionKey: self.option(for: code).rawValue]
         UserDefaults.standard.setValue(dict, forKey: self.userDefaultsKey)
+        UserDefaults.standard.synchronize()
         DispatchQueue.main.async {
             self.delegate?.passcodeCreated?(self)
             NotificationCenter.default.post(name: Passcode.PasscodeCreatedNotification, object: self)
@@ -114,6 +117,7 @@ internal enum PasscodeOption: String {
     @objc public func remove() {
         if self.isPasscodeSet() {
             UserDefaults.standard.removeObject(forKey: self.userDefaultsKey)
+            UserDefaults.standard.synchronize()
             DispatchQueue.main.async {
                 self.delegate?.passcodeRemoved?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeRemovedNotification, object: self)
@@ -131,9 +135,10 @@ internal enum PasscodeOption: String {
     
     @objc public func change(_ code: String) {
         if self.isPasscodeSet() {
-            let dict = [self.sha256Key: self.sha256(code),
-                        self.optionKey: self.option(for: code).rawValue]
+            let dict = [Passcode.hashKey: self.hash(code),
+                        Passcode.optionKey: self.option(for: code).rawValue]
             UserDefaults.standard.setValue(dict, forKey: self.userDefaultsKey)
+            UserDefaults.standard.synchronize()
             DispatchQueue.main.async {
                 self.delegate?.passcodeChanged?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeChangedNotification, object: self)
@@ -146,9 +151,9 @@ internal enum PasscodeOption: String {
         
         if let code = code {
             if let dict = UserDefaults.standard.object(forKey: self.userDefaultsKey) as? [String: String] {
-                let storedSha256 = dict[self.sha256Key];
-                let sha256 = self.sha256(code)
-                authenticated = (sha256 == storedSha256)
+                let storedHash = dict[Passcode.hashKey];
+                let hash = self.hash(code)
+                authenticated = (hash == storedHash)
             }
         } else if Passcode.isBiometricsEnabled() {
             let context = LAContext()
@@ -218,14 +223,27 @@ internal enum PasscodeOption: String {
 }
 
 
+@objc public extension Passcode {
+    
+    @objc static func setHash(_ hash: String, forKey key: String) {
+        let dict = [Passcode.hashKey: hash,
+                    Passcode.optionKey: PasscodeOption.alphanumerical.rawValue]
+        let userDefaultsKey = Passcode.userDefaultsKey(key)
+        UserDefaults.standard.setValue(dict, forKey: userDefaultsKey)
+        UserDefaults.standard.synchronize()
+        
+    }
+}
+
+
 private extension Passcode {
     
-    func sha256(_ string: String) -> String {
+    func hash(_ string: String) -> String {
         let data = Data(string.utf8)
-        let hash = SHA256.hash(data: data)
-        return hash.compactMap {String(format: "%02x", $0)}.joined()
+        let digest: any Digest = Passcode.legacyMD5Support ? Insecure.MD5.hash(data: data) : SHA256.hash(data: data)
+        return digest.compactMap {String(format: "%02x", $0)}.joined()
     }
-    
+        
     func option(for code: String) -> PasscodeOption {
         
         let digitCharacters = CharacterSet(charactersIn: "0123456789")
@@ -241,5 +259,9 @@ private extension Passcode {
         }
         
         return .alphanumerical
+    }
+    
+    static func userDefaultsKey(_ key: String) -> String {
+        return "net.domzilla.PasscodeKit." + key
     }
 }
