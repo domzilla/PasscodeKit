@@ -47,9 +47,9 @@ import LocalAuthentication
         if let error = error as? LAError {
             if error.code == .biometryNotAvailable {
                 let alertController = UIAlertController(title: error.localizedDescription,
-                                                        message: String(format: NSLocalizedString("%@ doesn't have access to biometric authentification.", 
+                                                        message: String(format: NSLocalizedString("%@ doesn't have access to biometric authentication.",
                                                                                                   bundle: Bundle.PasscodeKitRessourceBundle,
-                                                                                                  comment: "Message that the app doens't have access rights to biometric authentification. Placeholder is app name."), appName),
+                                                                                                  comment: "Message that the app doesn't have access rights to biometric authentication. Placeholder is app name."), appName),
                                                         preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", 
                                                                                  bundle: Bundle.PasscodeKitRessourceBundle,
