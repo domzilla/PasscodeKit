@@ -48,6 +48,8 @@ internal enum PasscodeOption: String {
     }
 }
 
+public typealias AuthenticationHandler = (Bool) -> Void
+
 @objc public class Passcode : NSObject {
     
     @objc public static let PasscodeCreatedNotification = NSNotification.Name("PKPasscodeCreatedNotification")
@@ -82,10 +84,18 @@ internal enum PasscodeOption: String {
     
     @objc public func lock(_ viewController: UIViewController) {
         if self.isPasscodeSet() {
-            let authenticateViewController = AuthenticateViewController(passcode: self)
-            viewController.addChild(authenticateViewController)
-            viewController.view.addSubview(authenticateViewController.view)
-            authenticateViewController.didMove(toParent: viewController)
+            let lockViewController = LockViewController(passcode: self)
+            viewController.addChild(lockViewController)
+            viewController.view.addSubview(lockViewController.view)
+            lockViewController.didMove(toParent: viewController)
+        }
+    }
+    
+    @objc public func authenticate(presentOn viewController: UIViewController, animated: Bool, handler: @escaping AuthenticationHandler) {
+        if self.isPasscodeSet() {
+            let authenticateViewController = AuthenticateViewController(passcode: self, authenticationHandler: handler)
+            let navigationController = UINavigationController(rootViewController: authenticateViewController)
+            viewController.present(navigationController, animated: animated)
         }
     }
         
@@ -181,7 +191,7 @@ internal enum PasscodeOption: String {
         
         return authenticated
     }
-    
+        
     @objc public func isPasscodeSet() -> Bool {
         return UserDefaults.standard.object(forKey: self.userDefaultsKey) != nil
     }

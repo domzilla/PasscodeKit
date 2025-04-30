@@ -55,11 +55,11 @@ import UIKit
             self.locked = true
             for scene in UIApplication.shared.connectedScenes {
                 if let windowScene = scene as? UIWindowScene {
-                    let authenticateViewController = AuthenticateViewController(passcode: self)
+                    let lockViewController = LockViewController(passcode: self)
                     for window in windowScene.windows {
                         if let viewController = window.rootViewController {
                             self.rootViewController[windowScene.session.persistentIdentifier] = viewController
-                            window.rootViewController = authenticateViewController
+                            window.rootViewController = lockViewController
                             break
                         }
                     }
@@ -84,7 +84,7 @@ import UIKit
                 for scene in UIApplication.shared.connectedScenes {
                     if let windowScene = scene as? UIWindowScene {
                         for window in windowScene.windows {
-                            if window.rootViewController is AuthenticateViewController {
+                            if window.rootViewController is LockViewController {
                                 if let viewController = self.rootViewController[windowScene.session.persistentIdentifier] {
                                     window.rootViewController = viewController
                                     self.rootViewController.removeValue(forKey: windowScene.session.persistentIdentifier)

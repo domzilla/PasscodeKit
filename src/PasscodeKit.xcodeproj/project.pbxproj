@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		F21CD5592D4BB770009225A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F21CD5572D4BB770009225A9 /* Localizable.strings */; };
 		F2A564802CD8EB2B0022F55D /* Biometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5647F2CD8EB2B0022F55D /* Biometry.swift */; };
+		F2AF1CD82DC1EC3200A62E5E /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AF1CD72DC1EC3200A62E5E /* AuthenticateViewController.swift */; };
 		F2E1BE122CBA48B6007D9E62 /* PasscodeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2E1BE1B2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */; };
 		F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */; };
 		F2E1BE1F2CC69758007D9E62 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */; };
-		F2E1BE212CC699AB007D9E62 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */; };
+		F2E1BE212CC699AB007D9E62 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE202CC699AB007D9E62 /* LockViewController.swift */; };
 		F2E1BE232CC699C4007D9E62 /* CreatePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */; };
 		F2E1BE252CC699D6007D9E62 /* ChangePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */; };
 		F2E1BE272CC699E5007D9E62 /* RemovePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */; };
@@ -51,12 +52,13 @@
 		F21CD56B2D50FEA1009225A9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F21CD56C2D50FEA8009225A9 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2A5647F2CD8EB2B0022F55D /* Biometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biometry.swift; sourceTree = "<group>"; };
+		F2AF1CD72DC1EC3200A62E5E /* AuthenticateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
 		F2E1BE0E2CBA48B6007D9E62 /* PasscodeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasscodeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E1BE112CBA48B6007D9E62 /* PasscodeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasscodeKit.h; sourceTree = "<group>"; };
 		F2E1BE1A2CBA4A99007D9E62 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F2E1BE1C2CBA4B79007D9E62 /* PasscodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTextField.swift; sourceTree = "<group>"; };
 		F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
-		F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
+		F2E1BE202CC699AB007D9E62 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 		F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasscodeViewController.swift; sourceTree = "<group>"; };
 		F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeViewController.swift; sourceTree = "<group>"; };
 		F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovePasscodeViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				F2E1BE1E2CC69758007D9E62 /* PasscodeViewController.swift */,
-				F2E1BE202CC699AB007D9E62 /* AuthenticateViewController.swift */,
+				F2E1BE202CC699AB007D9E62 /* LockViewController.swift */,
+				F2AF1CD72DC1EC3200A62E5E /* AuthenticateViewController.swift */,
 				F2E1BE222CC699C4007D9E62 /* CreatePasscodeViewController.swift */,
 				F2E1BE242CC699D6007D9E62 /* ChangePasscodeViewController.swift */,
 				F2E1BE262CC699E5007D9E62 /* RemovePasscodeViewController.swift */,
@@ -249,9 +252,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E1BE1F2CC69758007D9E62 /* PasscodeViewController.swift in Sources */,
-				F2E1BE212CC699AB007D9E62 /* AuthenticateViewController.swift in Sources */,
+				F2E1BE212CC699AB007D9E62 /* LockViewController.swift in Sources */,
 				F2E1BE232CC699C4007D9E62 /* CreatePasscodeViewController.swift in Sources */,
 				F2E1BE7D2CC779CD007D9E62 /* Passcode.swift in Sources */,
+				F2AF1CD82DC1EC3200A62E5E /* AuthenticateViewController.swift in Sources */,
 				F2A564802CD8EB2B0022F55D /* Biometry.swift in Sources */,
 				F2E1BE342CC69AA8007D9E62 /* PasscodeKitRessourceBundle.swift in Sources */,
 				F2E1BE1D2CBA4B79007D9E62 /* PasscodeTextField.swift in Sources */,

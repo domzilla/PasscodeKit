@@ -2,19 +2,20 @@
 //  AuthenticateViewController.swift
 //  PasscodeKit
 //
-//  Created by Dominic Rodemer on 30.04.25.
+//  Created by Dominic Rodemer on 21.10.24.
 //
 
 import UIKit
 
-internal class AuthenticateViewController: PasscodeViewController {
-    
-    let authenticationHandler: AuthenticationHandler
-
-    init(passcode: Passcode, authenticationHandler: @escaping AuthenticationHandler) {
-        self.authenticationHandler = authenticationHandler
+internal class LockViewController: PasscodeViewController {
         
+    override init(passcode: Passcode) {
         super.init(passcode: passcode)
+                
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(passcodeAuthenticatedNotification(notification:)),
+                                               name: Passcode.PasscodeAuthenticatedNotification,
+                                               object: passcode)
     }
     
     required init?(coder: NSCoder) {
@@ -34,10 +35,6 @@ internal class AuthenticateViewController: PasscodeViewController {
         
         self.passcodeTextField.returnKeyType = .done
         self.passcodeTextField.reloadInputViews()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                                 target: self,
-                                                                 action: #selector(cancelButtonAction(_:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,9 +59,6 @@ internal class AuthenticateViewController: PasscodeViewController {
             
                 if !authenticated {
                     self.passcodeTextField.becomeFirstResponder()
-                } else {
-                    self.authenticationHandler(true)
-                    self.dismiss(animated: true)
                 }
             }
         }
@@ -89,19 +83,20 @@ internal class AuthenticateViewController: PasscodeViewController {
                 self.passcodeTextField.clear()
             } else {
                 self.setFailedLabelText(nil)
-                self.authenticationHandler(true)
-                self.dismiss(animated: true)
             }
         }
     }
 }
 
 
-private extension AuthenticateViewController {
-        
-    // MARK: - Actions
-    @objc func cancelButtonAction(_ sender: Any?) {
-        self.authenticationHandler(false)
-        self.dismiss(animated: true)
+private extension LockViewController {
+    
+    // MARK: - Passcode Notifications
+    @objc func passcodeAuthenticatedNotification(notification: NSNotification) {
+        if self.parent != nil {
+            self.willMove(toParent: nil)
+            self.view.removeFromSuperview()
+            self.removeFromParent()
+        }
     }
 }
