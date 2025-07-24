@@ -33,6 +33,7 @@ import UIKit
                                                selector: #selector(applicationDidEnterBackgroundNotification(_:)),
                                                name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
+        
         AppPasscode.shared.lock()
         
         if Passcode.isBiometricsEnabled() {
@@ -52,7 +53,6 @@ import UIKit
         }
         
         if self.isPasscodeSet() {
-            self.locked = true
             for scene in UIApplication.shared.connectedScenes {
                 if let windowScene = scene as? UIWindowScene {
                     let lockViewController = LockViewController(passcode: self)
@@ -60,7 +60,8 @@ import UIKit
                         if let viewController = window.rootViewController {
                             self.rootViewController[windowScene.session.persistentIdentifier] = viewController
                             window.rootViewController = lockViewController
-                            break
+                            self.locked = true
+                            return
                         }
                     }
                 }
