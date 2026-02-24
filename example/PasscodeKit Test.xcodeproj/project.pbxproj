@@ -3,21 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F2E1BE4F2CC7725B007D9E62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE4E2CC7725B007D9E62 /* AppDelegate.swift */; };
-		F2E1BE512CC7725B007D9E62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE502CC7725B007D9E62 /* SceneDelegate.swift */; };
-		F2E1BE532CC7725B007D9E62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE522CC7725B007D9E62 /* ViewController.swift */; };
-		F2E1BE562CC7725B007D9E62 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE552CC7725B007D9E62 /* Base */; };
-		F2E1BE582CC7725C007D9E62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE572CC7725C007D9E62 /* Assets.xcassets */; };
-		F2E1BE5B2CC7725C007D9E62 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F2E1BE5A2CC7725C007D9E62 /* Base */; };
 		F2E1BE712CC772AF007D9E62 /* KeychainKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE6F2CC772A0007D9E62 /* KeychainKit.framework */; };
 		F2E1BE722CC772AF007D9E62 /* KeychainKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE6F2CC772A0007D9E62 /* KeychainKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2E1BE732CC772AF007D9E62 /* PasscodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE692CC77299007D9E62 /* PasscodeKit.framework */; };
 		F2E1BE742CC772AF007D9E62 /* PasscodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1BE692CC77299007D9E62 /* PasscodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F2E1BE7B2CC7772D007D9E62 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1BE7A2CC7772D007D9E62 /* LockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,17 +61,30 @@
 
 /* Begin PBXFileReference section */
 		F2E1BE4B2CC7725B007D9E62 /* PasscodeKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PasscodeKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2E1BE4E2CC7725B007D9E62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F2E1BE502CC7725B007D9E62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F2E1BE522CC7725B007D9E62 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F2E1BE552CC7725B007D9E62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F2E1BE572CC7725C007D9E62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F2E1BE5A2CC7725C007D9E62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F2E1BE5C2CC7725C007D9E62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2E1BE632CC77299007D9E62 /* PasscodeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PasscodeKit.xcodeproj; path = ../src/PasscodeKit.xcodeproj; sourceTree = "<group>"; };
 		F2E1BE6A2CC772A0007D9E62 /* KeychainKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeychainKit.xcodeproj; path = ../../KeychainKit/src/KeychainKit.xcodeproj; sourceTree = "<group>"; };
-		F2E1BE7A2CC7772D007D9E62 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F25D68962F4D88F300DD1ED0 /* Exceptions for "PasscodeKit Test" folder in "PasscodeKit Test" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = F2E1BE4A2CC7725B007D9E62 /* PasscodeKit Test */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F25D688D2F4D88E900DD1ED0 /* PasscodeKit Test */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F25D68962F4D88F300DD1ED0 /* Exceptions for "PasscodeKit Test" folder in "PasscodeKit Test" target */,
+			);
+			path = "PasscodeKit Test";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F2E1BE482CC7725B007D9E62 /* Frameworks */ = {
@@ -98,7 +104,7 @@
 			children = (
 				F2E1BE6A2CC772A0007D9E62 /* KeychainKit.xcodeproj */,
 				F2E1BE632CC77299007D9E62 /* PasscodeKit.xcodeproj */,
-				F2E1BE4D2CC7725B007D9E62 /* PasscodeKit Test */,
+				F25D688D2F4D88E900DD1ED0 /* PasscodeKit Test */,
 				F2E1BE4C2CC7725B007D9E62 /* Products */,
 				F2E1BE702CC772AF007D9E62 /* Frameworks */,
 			);
@@ -110,21 +116,6 @@
 				F2E1BE4B2CC7725B007D9E62 /* PasscodeKit Test.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F2E1BE4D2CC7725B007D9E62 /* PasscodeKit Test */ = {
-			isa = PBXGroup;
-			children = (
-				F2E1BE4E2CC7725B007D9E62 /* AppDelegate.swift */,
-				F2E1BE502CC7725B007D9E62 /* SceneDelegate.swift */,
-				F2E1BE522CC7725B007D9E62 /* ViewController.swift */,
-				F2E1BE7A2CC7772D007D9E62 /* LockViewController.swift */,
-				F2E1BE542CC7725B007D9E62 /* Main.storyboard */,
-				F2E1BE572CC7725C007D9E62 /* Assets.xcassets */,
-				F2E1BE592CC7725C007D9E62 /* LaunchScreen.storyboard */,
-				F2E1BE5C2CC7725C007D9E62 /* Info.plist */,
-			);
-			path = "PasscodeKit Test";
 			sourceTree = "<group>";
 		};
 		F2E1BE642CC77299007D9E62 /* Products */ = {
@@ -168,6 +159,9 @@
 				F2E1BE772CC772BC007D9E62 /* PBXTargetDependency */,
 				F2E1BE792CC772BC007D9E62 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				F25D688D2F4D88E900DD1ED0 /* PasscodeKit Test */,
+			);
 			name = "PasscodeKit Test";
 			productName = "PasscodeKit Test";
 			productReference = F2E1BE4B2CC7725B007D9E62 /* PasscodeKit Test.app */;
@@ -181,7 +175,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					F2E1BE4A2CC7725B007D9E62 = {
 						CreatedOnToolsVersion = 15.4;
@@ -189,7 +183,6 @@
 				};
 			};
 			buildConfigurationList = F2E1BE462CC7725B007D9E62 /* Build configuration list for PBXProject "PasscodeKit Test" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -197,6 +190,7 @@
 				Base,
 			);
 			mainGroup = F2E1BE422CC7725B007D9E62;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = F2E1BE4C2CC7725B007D9E62 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -238,9 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2E1BE582CC7725C007D9E62 /* Assets.xcassets in Resources */,
-				F2E1BE5B2CC7725C007D9E62 /* Base in Resources */,
-				F2E1BE562CC7725B007D9E62 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,10 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2E1BE532CC7725B007D9E62 /* ViewController.swift in Sources */,
-				F2E1BE4F2CC7725B007D9E62 /* AppDelegate.swift in Sources */,
-				F2E1BE512CC7725B007D9E62 /* SceneDelegate.swift in Sources */,
-				F2E1BE7B2CC7772D007D9E62 /* LockViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,25 +259,6 @@
 			targetProxy = F2E1BE782CC772BC007D9E62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		F2E1BE542CC7725B007D9E62 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2E1BE552CC7725B007D9E62 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F2E1BE592CC7725C007D9E62 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2E1BE5A2CC7725C007D9E62 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F2E1BE5D2CC7725C007D9E62 /* Debug */ = {
@@ -421,13 +389,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PasscodeKit Test/Info.plist";
+				INFOPLIST_FILE = "PasscodeKit Test/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,13 +418,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 568T6RKXH7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PasscodeKit Test/Info.plist";
+				INFOPLIST_FILE = "PasscodeKit Test/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
