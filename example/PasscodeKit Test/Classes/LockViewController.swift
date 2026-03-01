@@ -5,27 +5,26 @@
 //  Created by Dominic Rodemer on 22.10.24.
 //
 
+import PasscodeKit
 import UIKit
 
-import PasscodeKit
-
 class LockViewController: UIViewController {
-    
     let passcode: Passcode
-    
+
     init(passcode: Passcode) {
         self.passcode = passcode
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.view.backgroundColor = .systemBackground
 
         let label = UILabel(frame: self.view.bounds)
@@ -35,7 +34,7 @@ class LockViewController: UIViewController {
         label.textColor = .systemGreen
         label.textAlignment = .center
         self.view.addSubview(label)
-        
-        passcode.lock(self)
+
+        self.passcode.lock(self)
     }
 }
