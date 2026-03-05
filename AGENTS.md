@@ -6,7 +6,7 @@ PasscodeKit is a lightweight, easy-to-use in-app passcode framework for iOS. It 
 ## Tech Stack
 - **Language**: Swift 5 (with Objective-C umbrella header)
 - **Type**: Xcode Framework
-- **Target-Platforms**: iOS 15.0+
+- **Target-Platforms**: iOS 17.0+
 - **Apple Frameworks Used**: UIKit, LocalAuthentication, CryptoKit, Foundation
 
 ## Framework Dependencies
