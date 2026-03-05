@@ -56,7 +56,8 @@ public class AppPasscode: Passcode {
     ///
     /// - Parameter key: Ignored. The internal `AppPasscode.key` is always used.
     @objc
-    override public init(key _: String) {
+    // swiftformat:disable:next unusedArguments
+    override public init(key: String) {
         super.init(key: AppPasscode.key)
     }
 
@@ -138,7 +139,8 @@ public class AppPasscode: Passcode {
     ///
     /// - Parameter viewController: Ignored. App-level locking operates on window root view controllers.
     @objc
-    override public func lock(_: UIViewController) {
+    // swiftformat:disable:next unusedArguments
+    override public func lock(_ viewController: UIViewController) {
         self.lock()
     }
 
