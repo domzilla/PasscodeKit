@@ -108,6 +108,13 @@ class PasscodeTextField: UITextField {
 
         self.passcodeOption = passcodeOption
 
+        self.registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (
+            textField: PasscodeTextField,
+            _: UITraitCollection
+        ) in
+            textField.updateText()
+        }
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(textDidChangeNotification(_:)),
@@ -167,18 +174,6 @@ class PasscodeTextField: UITextField {
                 }
             }
         }
-    }
-
-    /// Updates the circle indicator colors when the interface style changes.
-    ///
-    /// Ensures the filled and stroked circles use the correct color (black for
-    /// light mode, white for dark mode) after a trait collection change.
-    ///
-    /// - Parameter previousTraitCollection: The trait collection that was in effect before the change.
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        self.updateText()
     }
 
     /// Clears the text field content and resets all circle indicators to their empty state.

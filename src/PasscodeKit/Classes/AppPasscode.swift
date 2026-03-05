@@ -161,7 +161,7 @@ public class AppPasscode: Passcode {
 
         let authenticated = try await super.authenticate(code)
 
-        DispatchQueue.main.async {
+        await MainActor.run {
             if authenticated {
                 for scene in UIApplication.shared.connectedScenes {
                     if let windowScene = scene as? UIWindowScene {

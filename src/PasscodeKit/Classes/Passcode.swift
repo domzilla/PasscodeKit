@@ -372,21 +372,24 @@ public class Passcode: NSObject {
             if let error { throw error }
 
             if biometricsAvailable {
-                #warning("TODO localizedReason")
                 authenticated = try await context.evaluatePolicy(
                     .deviceOwnerAuthenticationWithBiometrics,
-                    localizedReason: "LOL"
+                    localizedReason: NSLocalizedString(
+                        "Verify your identity",
+                        bundle: Bundle.PasscodeKitRessourceBundle,
+                        comment: "Biometric authentication prompt reason"
+                    )
                 )
             }
         }
 
         if authenticated {
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.delegate?.passcodeAuthenticated?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeAuthenticatedNotification, object: self)
             }
         } else {
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.delegate?.passcodeAuthenticationFaliure?(self)
                 NotificationCenter.default.post(name: Passcode.PasscodeAuthenticationFaliureNotification, object: self)
             }
@@ -443,10 +446,13 @@ public class Passcode: NSObject {
             if let error { throw error }
 
             if canEnableBiometrics {
-                #warning("TODO localizedReason")
                 let enabled = try await context.evaluatePolicy(
                     .deviceOwnerAuthenticationWithBiometrics,
-                    localizedReason: "LOL"
+                    localizedReason: NSLocalizedString(
+                        "Enable biometric authentication",
+                        bundle: Bundle.PasscodeKitRessourceBundle,
+                        comment: "Biometric enrollment prompt reason"
+                    )
                 )
                 UserDefaults.standard.setValue(enabled, forKey: "net.domzilla.PasscodeKit.enableBiometrics")
                 UserDefaults.standard.synchronize()

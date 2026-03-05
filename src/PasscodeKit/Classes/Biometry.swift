@@ -55,14 +55,10 @@ public class Biometry: NSObject {
 
         self.type = context.biometryType
 
-        if #available(iOS 17.0, *) {
-            if self.type == .opticID {
-                self.name = "Optic ID"
-                self.imageName = "opticid"
-            }
-        }
-
-        if self.type == .faceID {
+        if self.type == .opticID {
+            self.name = "Optic ID"
+            self.imageName = "opticid"
+        } else if self.type == .faceID {
             self.name = "Face ID"
             self.imageName = "faceid"
         } else if self.type == .touchID {
