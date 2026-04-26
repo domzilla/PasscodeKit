@@ -6,93 +6,81 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 ### Added
-- Added comprehensive documentation comments to all public and internal API across the entire framework
+- Documentation across the framework.
 
 ## [November 2025]
 ### Changed
-- Set deployment target back to iOS 15
-- Raised deployment target
+- Set deployment target back to iOS 15.
 
 ## [July 2025]
 ### Fixed
-- Fixed issue that app wasn't locked after launch
+- App was not locked after launch in some cases.
 
 ## [June 2025]
 ### Changed
-- Updated project
+- Updated project.
 
 ## [April 2025]
 ### Added
-- Added modal authentication
-### Changed
-- Refactoring
-- Updated project
+- Modal authentication.
 
 ## [February 2025]
 ### Added
-- Added localizations
-### Fixed
-- Fixed typo
+- Localizations.
 
 ## [December 2024]
 ### Added
-- Added MD5 legacy hashing support
+- MD5 legacy hash support for migrating older passcodes.
+
 ### Changed
-- Authenticate immediately if not locked
+- Authenticate immediately when the app is not locked.
 
 ## [November 2024]
 ### Added
-- Added method to present errors to user
-- Added biometry information
-- Added passcode options (4-digit, 6-digit, alphanumeric)
-- Added app passcode feature with keychain integration
+- App passcode feature with keychain integration.
+- Passcode options for 4-digit, 6-digit, and alphanumeric codes.
+- Method to present authentication errors to the user.
+- Biometry information helpers.
+
 ### Changed
-- Throw biometric error for better error handling
-- Automatically unlock app via FaceID after launch
-- Automatically lock app when AppPasscode is set
-- Major rewrite: Reuse VC code, make use of keychain
-- Make create, change & remove methods public
-- Refactoring and code formatting
+- Major rewrite that reuses view controller code and uses the keychain for storage.
+- Auto-unlock via Face ID after launch and auto-lock when an app passcode is set.
+- `create`, `change`, and `remove` methods are now public.
+
 ### Fixed
-- Fixed dynamic color
+- Dynamic color handling.
+
 ### Removed
-- Removed keychain dependency
+- External keychain dependency.
 
 ## [October 2024]
 ### Changed
-- Updated README
+- Updated README.
 
 ## [December 2023]
 ### Changed
-- Updated README
+- Updated README.
 
 ## [October 2023]
 ### Changed
-- Updated README
-- Updated PasscodeKit.podspec
-- Version 1.0.4
+- Updated README and podspec (1.0.4).
 
 ## [September 2023]
 ### Added
-- Created Package.swift for Swift Package Manager support
-### Changed
-- Version 1.0.3
-- Version 1.0.2
+- `Package.swift` for Swift Package Manager support.
 
 ## [August 2023]
 ### Changed
-- Updated README
+- Updated README.
 
 ## [April 2023]
 ### Changed
-- Updated README
+- Updated README.
 
 ## [May 2021]
 ### Changed
-- Updated README
-- General changes
+- Updated README.
 
 ## [April 2021]
 ### Added
-- Initial release (1.0.0)
-- Version 1.0.1
+- Initial release (1.0.0).
