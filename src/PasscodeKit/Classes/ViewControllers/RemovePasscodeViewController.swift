@@ -64,11 +64,13 @@ class RemovePasscodeViewController: PasscodeViewController {
         self.passcodeTextField.returnKeyType = .done
         self.passcodeTextField.reloadInputViews()
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let cancelButton = UIBarButtonItem(
             barButtonSystemItem: .cancel,
             target: self,
             action: #selector(cancelButtonAction(_:))
         )
+        cancelButton.accessibilityIdentifier = "RemovePasscodeViewController.cancelButton"
+        self.navigationItem.rightBarButtonItem = cancelButton
     }
 
     /// Called just before the view is added to the view hierarchy.

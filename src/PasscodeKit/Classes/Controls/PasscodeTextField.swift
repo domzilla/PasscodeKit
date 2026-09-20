@@ -71,6 +71,7 @@ class PasscodeTextField: UITextField {
                 self.backgroundColor = .secondarySystemFill
                 self.keyboardType = .default
                 self.font = UIFont.boldSystemFont(ofSize: 22)
+                self.accessibilityValue = nil
             }
 
             self.reloadInputViews()
@@ -105,6 +106,14 @@ class PasscodeTextField: UITextField {
         self.textAlignment = .center
         self.isSecureTextEntry = true
         self.returnKeyType = .done
+
+        self.accessibilityLabel = NSLocalizedString(
+            "Passcode",
+            tableName: "Accessibility",
+            bundle: Bundle.PasscodeKitRessourceBundle,
+            comment: "Accessibility label for the passcode input field"
+        )
+        self.accessibilityIdentifier = "PasscodeViewController.passcodeTextField"
 
         self.passcodeOption = passcodeOption
 
@@ -223,6 +232,17 @@ extension PasscodeTextField {
                 shapeLayer.strokeColor = circleColor
             }
         }
+
+        self.accessibilityValue = String(
+            format: NSLocalizedString(
+                "%1$ld of %2$ld digits entered",
+                tableName: "Accessibility",
+                bundle: Bundle.PasscodeKitRessourceBundle,
+                comment: "Accessibility value announcing how many passcode digits have been entered"
+            ),
+            currentLength,
+            self.passcodeOption.length
+        )
 
         if currentLength >= self.passcodeOption.length {
             self.sendActions(for: .editingDidEndOnExit)

@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "%2$ld桁のうち%1$ld桁を入力しました";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "パスコードの形式を選択します。";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "パスコード";

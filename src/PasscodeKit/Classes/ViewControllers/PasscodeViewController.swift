@@ -134,6 +134,7 @@ class PasscodeViewController: UIViewController {
         self.infoLabel.textAlignment = .center
         self.infoLabel.textColor = .label
         self.infoLabel.font = UIFont.systemFont(ofSize: 17)
+        self.infoLabel.accessibilityIdentifier = "PasscodeViewController.infoLabel"
         self.containerView.addSubview(self.infoLabel)
 
         self.passcodeTextField = PasscodeTextField(
@@ -158,6 +159,7 @@ class PasscodeViewController: UIViewController {
         self.failedLabel.layer.cornerRadius = 15
         self.failedLabel.isHidden = true
         self.failedLabel.clipsToBounds = true
+        self.failedLabel.accessibilityIdentifier = "PasscodeViewController.failedLabel"
         self.containerView.addSubview(self.failedLabel)
 
         var optionButtonConfiguration = UIButton.Configuration.plain()
@@ -170,6 +172,13 @@ class PasscodeViewController: UIViewController {
         self.optionButton.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         self.optionButton.changesSelectionAsPrimaryAction = false
         self.optionButton.showsMenuAsPrimaryAction = true
+        self.optionButton.accessibilityHint = NSLocalizedString(
+            "Chooses the passcode format.",
+            tableName: "Accessibility",
+            bundle: Bundle.PasscodeKitRessourceBundle,
+            comment: "Accessibility hint for the code options button"
+        )
+        self.optionButton.accessibilityIdentifier = "PasscodeViewController.optionButton"
         self.optionButton.menu = UIMenu(children: [
             UIAction(
                 title: NSLocalizedString(
@@ -229,9 +238,9 @@ class PasscodeViewController: UIViewController {
 
     /// Updates the failed label with the given text, or hides it if `nil` is passed.
     ///
-    /// When a non-nil string is provided, the label becomes visible, its text is set, and
-    /// the label is resized to fit the content with horizontal padding. When `nil` is passed,
-    /// the label is hidden.
+    /// When a non-nil string is provided, the label becomes visible, its text is set, the
+    /// label is resized to fit the content with horizontal padding, and the message is
+    /// announced to assistive technology. When `nil` is passed, the label is hidden.
     ///
     /// - Parameter text: The failure message to display, or `nil` to hide the label.
     func setFailedLabelText(_ text: String?) {
@@ -245,6 +254,10 @@ class PasscodeViewController: UIViewController {
             width: self.failedLabel.frame.width + 30.0,
             height: 30.0
         )
+
+        if let text {
+            UIAccessibility.post(notification: .announcement, argument: text)
+        }
     }
 
     /// Plays a horizontal shake animation on the passcode text field to indicate an incorrect entry.

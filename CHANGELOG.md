@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 ### Added
 - Documentation across the framework.
+- VoiceOver support on all passcode screens, with the numeric field reporting how many digits have been entered and incorrect-passcode messages announced.
 
 ## [November 2025]
 ### Changed

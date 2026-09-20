@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "%2$ld자리 중 %1$ld자리 입력됨";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "비밀번호 형식을 선택합니다.";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "비밀번호";

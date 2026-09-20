@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "已输入 %2$ld 位中的 %1$ld 位";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "选择密码格式。";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "密码";

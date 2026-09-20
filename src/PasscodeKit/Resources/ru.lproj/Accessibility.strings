@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "Введено %1$ld из %2$ld цифр";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "Выбирает формат кода доступа.";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "Код доступа";

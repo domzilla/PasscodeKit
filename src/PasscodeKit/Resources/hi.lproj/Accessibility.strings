@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "%2$ld में से %1$ld अंक दर्ज किए गए";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "पासकोड का प्रारूप चुनता है।";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "पासकोड";

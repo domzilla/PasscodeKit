@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "%1$ld von %2$ld Ziffern eingegeben";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "Wählt das Passcode-Format.";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "Passcode";

@@ -63,11 +63,13 @@ class CreatePasscodeViewController: PasscodeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let cancelButton = UIBarButtonItem(
             barButtonSystemItem: .cancel,
             target: self,
             action: #selector(cancelButtonAction(_:))
         )
+        cancelButton.accessibilityIdentifier = "CreatePasscodeViewController.cancelButton"
+        self.navigationItem.rightBarButtonItem = cancelButton
 
         self.updateUI()
     }

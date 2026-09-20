@@ -1,0 +1,8 @@
+/* Accessibility value announcing how many passcode digits have been entered */
+"%1$ld of %2$ld digits entered" = "تم إدخال %1$ld من %2$ld أرقام";
+
+/* Accessibility hint for the code options button */
+"Chooses the passcode format." = "يختار تنسيق رمز المرور.";
+
+/* Accessibility label for the passcode input field */
+"Passcode" = "رمز المرور";
