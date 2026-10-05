@@ -9,64 +9,31 @@ import CryptoKit
 import LocalAuthentication
 import UIKit
 
-/// A delegate protocol for receiving passcode lifecycle and authentication events.
-///
-/// Conforming objects are notified when a passcode is created, changed, removed,
-/// or when an authentication attempt succeeds or fails. All methods are optional.
 @objc
 protocol PasscodeDelegate {
-    /// Called when a new passcode has been successfully created and stored.
-    ///
-    /// - Parameter passcode: The `Passcode` instance that was created.
     @objc
     optional func passcodeCreated(_ passcode: Passcode)
 
-    /// Called when an existing passcode has been successfully changed to a new value.
-    ///
-    /// - Parameter passcode: The `Passcode` instance whose passcode was changed.
     @objc
     optional func passcodeChanged(_ passcode: Passcode)
 
-    /// Called when an existing passcode has been removed from storage.
-    ///
-    /// - Parameter passcode: The `Passcode` instance whose passcode was removed.
     @objc
     optional func passcodeRemoved(_ passcode: Passcode)
 
-    /// Called when the user has successfully authenticated against the stored passcode or via biometrics.
-    ///
-    /// - Parameter passcode: The `Passcode` instance that was authenticated.
     @objc
     optional func passcodeAuthenticated(_ passcode: Passcode)
 
-    /// Called when an authentication attempt has failed due to an incorrect passcode or biometric rejection.
-    ///
-    /// - Parameter passcode: The `Passcode` instance where authentication failed.
     @objc
     optional func passcodeAuthenticationFaliure(_ passcode: Passcode)
 }
 
-/// Represents the type of passcode based on its format and length.
-///
-/// The option determines the keyboard type and input length shown in the passcode
-/// view controllers. It is inferred from the passcode content when storing, and
-/// persisted alongside the hash in `UserDefaults`.
 enum PasscodeOption: String {
-    /// A numeric passcode consisting of exactly four digits.
     case fourDigits
 
-    /// A numeric passcode consisting of exactly six digits.
     case sixDigits
 
-    /// An alphanumeric passcode of arbitrary length, used as the default fallback.
     case alphanumerical
 
-    /// Creates a `PasscodeOption` from an optional raw value string.
-    ///
-    /// Falls back to `.alphanumerical` if the raw value is `nil` or does not
-    /// match any known case.
-    ///
-    /// - Parameter rawValue: The optional raw string to interpret as a passcode option.
     init(rawValue: String?) {
         switch rawValue {
         case PasscodeOption.fourDigits.rawValue:
@@ -78,10 +45,6 @@ enum PasscodeOption: String {
         }
     }
 
-    /// The expected character length for this passcode option.
-    ///
-    /// Returns `4` for `.fourDigits`, `6` for `.sixDigits`, and `Int.max` for
-    /// `.alphanumerical` (indicating no fixed length constraint).
     var length: Int {
         switch self {
         case .fourDigits:
@@ -146,25 +109,14 @@ public class Passcode: NSObject {
     /// Defaults to `false`.
     @objc public static var legacyMD5Support: Bool = false
 
-    /// The unique identifier for this passcode instance.
-    ///
-    /// Used to derive the `UserDefaults` storage key under the
-    /// `net.domzilla.PasscodeKit.*` namespace.
     let key: String
 
-    /// The fully qualified `UserDefaults` key used to persist the passcode hash and option.
     private let userDefaultsKey: String
 
-    /// The dictionary key used to store the passcode hash within the `UserDefaults` entry.
     private static let hashKey = "hash"
 
-    /// The dictionary key used to store the passcode option within the `UserDefaults` entry.
     private static let optionKey = "option"
 
-    /// The current passcode option for this instance, read from `UserDefaults`.
-    ///
-    /// Inspects the stored dictionary to determine whether the passcode is a four-digit,
-    /// six-digit, or alphanumeric code. Defaults to `.fourDigits` if no stored value exists.
     var option: PasscodeOption {
         if let dict = UserDefaults.standard.object(forKey: self.userDefaultsKey) as? [String: String] {
             return PasscodeOption(rawValue: dict[Passcode.optionKey])
@@ -173,7 +125,6 @@ public class Passcode: NSObject {
         return .fourDigits
     }
 
-    /// The delegate that receives passcode lifecycle and authentication events.
     var delegate: PasscodeDelegate?
 
     /// Creates a new `Passcode` instance with the specified storage key.
@@ -513,27 +464,12 @@ extension Passcode {
 // MARK: - Private Helpers
 
 extension Passcode {
-    /// Computes a cryptographic hash of the given string.
-    ///
-    /// Uses SHA256 by default, or MD5 if ``legacyMD5Support`` is enabled. The resulting
-    /// digest is returned as a lowercase hexadecimal string.
-    ///
-    /// - Parameter string: The plaintext string to hash.
-    /// - Returns: A lowercase hexadecimal representation of the hash digest.
     private func hash(_ string: String) -> String {
         let data = Data(string.utf8)
         let digest: any Digest = Passcode.legacyMD5Support ? Insecure.MD5.hash(data: data) : SHA256.hash(data: data)
         return digest.compactMap { String(format: "%02x", $0) }.joined()
     }
 
-    /// Determines the appropriate ``PasscodeOption`` for the given passcode string.
-    ///
-    /// Inspects the code's character set and length to classify it as `.fourDigits`,
-    /// `.sixDigits`, or `.alphanumerical`. A code is considered numeric only if it
-    /// consists entirely of the characters 0-9.
-    ///
-    /// - Parameter code: The plaintext passcode string to classify.
-    /// - Returns: The ``PasscodeOption`` that best matches the code's format and length.
     private func option(for code: String) -> PasscodeOption {
         let digitCharacters = CharacterSet(charactersIn: "0123456789")
         let isNumeric = CharacterSet(charactersIn: code).isSubset(of: digitCharacters)
@@ -550,12 +486,6 @@ extension Passcode {
         return .alphanumerical
     }
 
-    /// Constructs the fully qualified `UserDefaults` key for the given passcode key.
-    ///
-    /// Prepends the `net.domzilla.PasscodeKit.` namespace prefix to the provided key.
-    ///
-    /// - Parameter key: The passcode identifier to namespace.
-    /// - Returns: The namespaced `UserDefaults` key string.
     fileprivate static func userDefaultsKey(_ key: String) -> String {
         "net.domzilla.PasscodeKit." + key
     }

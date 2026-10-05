@@ -39,12 +39,6 @@ public class Biometry: NSObject {
     /// biometric capability is available.
     @objc public var imageName: String?
 
-    /// Initializes the biometry detector by querying the device for its biometric capability.
-    ///
-    /// Creates an `LAContext` and evaluates whether the device can perform biometric authentication.
-    /// Based on the result, it populates ``type``, ``name``, and ``imageName`` with the appropriate values.
-    ///
-    /// - Note: This initializer is `internal` because consumers should use the ``shared`` singleton instead.
     override init() {
         super.init()
 
