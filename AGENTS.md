@@ -33,8 +33,6 @@ xcodebuild -project src/PasscodeKit.xcodeproj -scheme PasscodeKit \
 xcodebuild -project src/PasscodeKit.xcodeproj -scheme PasscodeKit clean
 ```
 
-No test targets exist in this project.
-
 ## Testing (MANDATORY)
 No test targets exist in this project.
 
