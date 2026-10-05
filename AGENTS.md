@@ -10,9 +10,11 @@ PasscodeKit is a lightweight, easy-to-use in-app passcode framework for iOS. It 
 - **Apple Frameworks Used**: UIKit, LocalAuthentication, CryptoKit, Foundation
 
 ## Guides (MANDATORY)
-- Swift style: `~/Agents/Style/swift-swiftui-style-guide.md`
-- Accessibility: `~/Agents/Guides/accessibility-guide.md`
-- Xcode projects: `~/Agents/Guides/xcode-project-guide.md`
+Read `~/Agents/Guides/xcode-project-guide.md` in full before planning or editing anything.
+
+Read these in full before touching the matching code:
+- Swift style (`.swift`): `~/Agents/Style/swift-swiftui-style-guide.md`
+- Accessibility (UI code, XIBs, storyboards): `~/Agents/Guides/accessibility-guide.md`
 
 ## Framework Dependencies
 This framework has **zero external dependencies** — it uses only Apple system frameworks.
