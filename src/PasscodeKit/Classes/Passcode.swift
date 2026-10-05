@@ -369,7 +369,9 @@ public class Passcode: NSObject {
             let context = LAContext()
             var error: NSError?
             let biometricsAvailable = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            if let error { throw error }
+            if let error {
+                throw error
+            }
 
             if biometricsAvailable {
                 authenticated = try await context.evaluatePolicy(
@@ -421,7 +423,9 @@ public class Passcode: NSObject {
         let context = LAContext()
         var error: NSError?
         let canEnableBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-        if let error { debugPrint(error) }
+        if let error {
+            debugPrint(error)
+        }
 
         return canEnableBiometrics
     }
@@ -443,7 +447,9 @@ public class Passcode: NSObject {
             let context = LAContext()
             var error: NSError?
             let canEnableBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            if let error { throw error }
+            if let error {
+                throw error
+            }
 
             if canEnableBiometrics {
                 let enabled = try await context.evaluatePolicy(

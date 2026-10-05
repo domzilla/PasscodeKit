@@ -51,7 +51,9 @@ public class Biometry: NSObject {
         let context = LAContext()
         var error: NSError?
         _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
-        if let error { debugPrint(error) }
+        if let error {
+            debugPrint(error)
+        }
 
         self.type = context.biometryType
 
