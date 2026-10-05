@@ -7,11 +7,6 @@
 
 import Foundation
 
-/// An extension on `Bundle` that provides access to the PasscodeKit framework's resource bundle.
-///
-/// The resource bundle contains all assets shipped with PasscodeKit, including localized strings
-/// for 14 supported languages (en, ar, de, es, fr, hi, it, ja, ko, nl, pt, ru, tr, zh_CN)
-/// and image assets used throughout the framework's UI.
 extension Bundle {
     /// The resource bundle for the PasscodeKit framework.
     ///

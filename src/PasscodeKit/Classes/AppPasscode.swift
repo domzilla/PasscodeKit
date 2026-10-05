@@ -26,19 +26,10 @@ public class AppPasscode: Passcode {
     /// through this shared instance.
     @objc public static let shared = AppPasscode()
 
-    /// The `UserDefaults` storage key identifier for the app-level passcode.
     private static let key = "AppPasscode.Key"
 
-    /// A dictionary mapping window scene persistent identifiers to their original root view controllers.
-    ///
-    /// When the app is locked, each scene's root view controller is stored here so it can be
-    /// restored after successful authentication.
     private var rootViewController: [String: UIViewController] = [:]
 
-    /// Indicates whether the app is currently in a locked state.
-    ///
-    /// When `true`, the app's windows are displaying `LockViewController` instances
-    /// in place of their original root view controllers.
     private var locked: Bool = false
 
     /// Creates a new `AppPasscode` instance using the default app-level storage key.
@@ -193,13 +184,6 @@ public class AppPasscode: Passcode {
 // MARK: - UIApplication Notifications
 
 extension AppPasscode {
-    /// Handles the app returning to the foreground by locking and attempting biometric authentication.
-    ///
-    /// This method is called in response to `UIApplication.willEnterForegroundNotification`.
-    /// It locks the app immediately and, if biometrics are enabled, attempts automatic
-    /// biometric authentication so the user can unlock without manually entering a passcode.
-    ///
-    /// - Parameter notification: The notification object posted by the system.
     @objc
     private func applicationWillEnterForegroundNotification(_: Notification) {
         self.lock()
@@ -215,13 +199,6 @@ extension AppPasscode {
         }
     }
 
-    /// Handles the app entering the background by locking immediately.
-    ///
-    /// This method is called in response to `UIApplication.didEnterBackgroundNotification`.
-    /// It ensures the app is locked before it becomes inactive, preventing unauthorized access
-    /// if the user switches back to the app.
-    ///
-    /// - Parameter notification: The notification object posted by the system.
     @objc
     private func applicationDidEnterBackgroundNotification(_: Notification) {
         self.lock()
