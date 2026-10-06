@@ -10,10 +10,9 @@ import UIKit
 /// App-level passcode manager that provides automatic locking and unlocking of the entire application.
 ///
 /// `AppPasscode` is a singleton subclass of `Passcode` designed for app-wide passcode protection.
-/// When configured, it automatically locks all connected scenes when the app enters the background
-/// and presents a lock screen by replacing each window's root view controller with a
-/// `LockViewController`. Upon successful authentication, the original root view controllers
-/// are restored.
+/// When configured, it automatically locks the app when it enters the background or returns to the
+/// foreground by replacing a window's root view controller with a `LockViewController`. Upon
+/// successful authentication, the original root view controller is restored.
 ///
 /// - Important: Call `applicationDidFinishLaunching()` from your app delegate's
 ///   `application(_:didFinishLaunchingWithOptions:)` method to register the required
@@ -90,12 +89,11 @@ public class AppPasscode: Passcode {
         }
     }
 
-    /// Locks the app by replacing each connected window scene's root view controller with a lock screen.
+    /// Locks the app by replacing a window's root view controller with a lock screen.
     ///
     /// If the app is already locked or no passcode has been set, this method returns immediately
-    /// without taking any action. When locking, the method iterates through all connected
-    /// `UIWindowScene` instances, stores each window's current root view controller for later
-    /// restoration, and replaces it with a `LockViewController`.
+    /// without taking any action. Otherwise, the current root view controller is stored for later
+    /// restoration and replaced with a `LockViewController`.
     ///
     /// - Note: Only the first window with a root view controller in the first available
     ///   window scene is locked. The method returns after locking a single window.

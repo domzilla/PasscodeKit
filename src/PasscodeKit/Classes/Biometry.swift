@@ -24,7 +24,8 @@ public class Biometry: NSObject {
 
     /// The biometry type available on the current device.
     ///
-    /// Defaults to `.none` if no biometric hardware is available or if biometric evaluation cannot be performed.
+    /// `.none` if the device has no biometric hardware. Reflects hardware support, not whether biometrics
+    /// are enrolled or permitted.
     @objc public var type: LABiometryType = .none
 
     /// The human-readable display name for the detected biometry type.

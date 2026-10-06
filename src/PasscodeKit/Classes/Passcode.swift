@@ -60,7 +60,7 @@ enum PasscodeOption: String {
 /// A closure invoked with the result of a passcode authentication attempt.
 ///
 /// The closure receives `true` if the user successfully authenticated, or `false` if
-/// the user cancelled the authentication flow or failed to authenticate.
+/// the user cancelled the authentication flow. Failed attempts do not invoke the closure.
 public typealias AuthenticationHandler = (Bool) -> Void
 
 /// Manages the creation, storage, authentication, and removal of an in-app passcode.
@@ -305,7 +305,8 @@ public class Passcode: NSObject {
     ///
     /// - Parameter code: The plaintext passcode to verify, or `nil` to attempt biometric authentication.
     /// - Returns: `true` if the authentication succeeded, `false` otherwise.
-    /// - Throws: An error from `LAContext` if biometric evaluation fails due to a system error.
+    /// - Throws: An error from `LAContext` if biometrics are unavailable or evaluation fails
+    ///   (including user cancellation). No failure notification is posted in that case.
     @objc
     public func authenticate(_ code: String?) async throws -> Bool {
         var authenticated = false
@@ -391,7 +392,8 @@ public class Passcode: NSObject {
     ///
     /// - Parameter enable: `true` to enable biometric authentication, `false` to disable it.
     /// - Returns: `true` if biometrics were successfully enabled, `false` otherwise.
-    /// - Throws: An error from `LAContext` if biometric evaluation fails due to a system error.
+    /// - Throws: An error from `LAContext` if biometrics are unavailable or evaluation fails
+    ///   (including user cancellation).
     @objc
     public static func enableBiometrics(_ enable: Bool) async throws -> Bool {
         if enable {
