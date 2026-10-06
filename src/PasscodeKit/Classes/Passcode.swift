@@ -9,20 +9,28 @@ import CryptoKit
 import LocalAuthentication
 import UIKit
 
+/// Receives callbacks about changes to a ``Passcode`` and the outcome of authentication attempts.
+///
+/// All methods are optional and called on the main thread, just before the matching notification is posted.
 @objc
-protocol PasscodeDelegate {
+public protocol PasscodeDelegate {
+    /// Called after a new passcode has been created and stored.
     @objc
     optional func passcodeCreated(_ passcode: Passcode)
 
+    /// Called after an existing passcode has been changed.
     @objc
     optional func passcodeChanged(_ passcode: Passcode)
 
+    /// Called after the passcode has been removed from storage.
     @objc
     optional func passcodeRemoved(_ passcode: Passcode)
 
+    /// Called after a successful authentication against the stored passcode or via biometrics.
     @objc
     optional func passcodeAuthenticated(_ passcode: Passcode)
 
+    /// Called after a failed authentication attempt.
     @objc
     optional func passcodeAuthenticationFaliure(_ passcode: Passcode)
 }
@@ -125,7 +133,8 @@ public class Passcode: NSObject {
         return .fourDigits
     }
 
-    var delegate: PasscodeDelegate?
+    /// The object notified about passcode changes and authentication results.
+    @objc public weak var delegate: PasscodeDelegate?
 
     /// Creates a new `Passcode` instance with the specified storage key.
     ///
