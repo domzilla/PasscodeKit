@@ -3,10 +3,11 @@ id: '261006-0R7WQC2'
 title: Change passcode UI posts Created instead of Changed notification
 author: Dominic Rodemer
 created_at: '2026-10-06T06:53:48.186430Z'
-status: open
+status: closed
 labels:
 - bug
 ---
+
 
 > **Note:** Agent-generated from an automated doc/code review. This may be a false positive — analyze and confirm against the code before fixing.
 

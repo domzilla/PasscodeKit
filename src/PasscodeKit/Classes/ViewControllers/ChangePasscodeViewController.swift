@@ -90,7 +90,7 @@ class ChangePasscodeViewController: PasscodeViewController {
         } else if self.state == .verifyNewPasscode {
             if let code = self.code {
                 if code == self.passcodeTextField.text {
-                    self.passcode.create(code)
+                    self.passcode.change(code)
                     self.dismiss(animated: true)
                 } else {
                     self.mismatch = true
