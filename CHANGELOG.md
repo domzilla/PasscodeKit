@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - VoiceOver support on all passcode screens, with the numeric field reporting how many digits have been entered and incorrect-passcode messages announced.
 - Public `PasscodeDelegate` for passcode change and authentication callbacks.
 
+### Fixed
+- AutoFill callout no longer covers the prompt on passcode screens.
+
 ## [November 2025]
 ### Changed
 - Set deployment target back to iOS 15.

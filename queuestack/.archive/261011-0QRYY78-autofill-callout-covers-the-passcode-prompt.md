@@ -3,7 +3,7 @@ id: '261011-0QRYY78'
 title: AutoFill callout covers the passcode prompt
 author: Dominic Rodemer
 created_at: '2026-10-11T06:45:50.863536Z'
-status: open
+status: closed
 labels:
 - bug
 attachments:

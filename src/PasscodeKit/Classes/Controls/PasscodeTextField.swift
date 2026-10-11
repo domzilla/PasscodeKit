@@ -114,6 +114,12 @@ class PasscodeTextField: UITextField {
         false
     }
 
+    /// Removes the AutoFill menu so its callout doesn't pop up over the prompt.
+    override func buildMenu(with builder: any UIMenuBuilder) {
+        super.buildMenu(with: builder)
+        builder.remove(menu: .autoFill)
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
